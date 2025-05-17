@@ -1,13 +1,14 @@
 "use client";
 import React from 'react';
 import AuthenticatedPage from "@/app/dashboard/AuthenticatedPage";
-import {Grid, Card, Divider, Text, TextInput, Title, Stack, Group, Button, Box, useMatches} from '@mantine/core';
+import {Grid, Container, Paper, Text, TextInput, Title, Stack, Button, Box, useMatches} from '@mantine/core';
 import {useRouter} from "next/navigation";
 import {validateEmailAddress} from "@/common/validationUtils";
 import {useCreateDeceasedUser} from "@/query/deceasedUserManagement/useCreateDeceasedUser";
 import {useCreationProgress} from "@/context/UserCreationProgressContext";
 import {UserCreationProgress} from "@/query/deceasedUserManagement/useUserCreationProgress";
 import {usePageLoadIndicator} from "@/context/LoadingContext";
+import {IconAt, IconMapPin, IconPhone, IconUser} from "@tabler/icons-react";
 
 
 interface UserInfo {
@@ -122,136 +123,120 @@ const CreateProfile: React.FC<CreateProfileProps> = () => {
 
     return (
         <AuthenticatedPage>
-            <Stack pl={{sm: 0, md: 200}} pt={{sm: 20, md: 50}} h="calc(100vh - 200px)" w="100vw" justify="center" align="center">
-                <form style={{
-                    width: '100%',
-                    height: '100%',
-                }} onSubmit={e => {
+            <Container size="xl" py="xl">
+                <form onSubmit={e => {
                     e.preventDefault();
                     setLoading(true);
                     handleSubmit();
                 }}>
-                    <Grid>
-                        <Grid.Col span={6} visibleFrom="md">
-                            <Stack w="100%" align="flex-end">
-                                <Title size={25}>Lorem Ipsum lorem ipsum</Title>
-                                <Text size="md">
-                                    Lorem Ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-                                </Text>
-                                <Box h={400} w='30vw' bg="lightgrey" style={{
-                                    borderRadius: 5
-                                }}/>
-                            </Stack>
-                        </Grid.Col>
-                        {/*<Divider visibleFrom="md" orientation="vertical" w='10px'/>*/}
-                        <Grid.Col span={{sm: 12, md: 6}}>
-                            <Stack align={formAlignment}>
-                                <Card
-                                    shadow="lg"
-                                    padding="xl"
-                                    radius="md"
-                                    withBorder
-                                    maw="90vw"
-                                    w={500}
-                                >
-                                    <Stack w="100%" pos="relative">
-                                        <Text component="label" mb={-15} size="sm" htmlFor="first-name-input">
-                                            First Name
-                                        </Text>
+                    <Grid gutter="xl">
+                        <Grid.Col span={{ base: 12, md: 6 }} order={{ base: 2, md: 1 }}>
+                            <Paper shadow="md" radius="lg" p="xl" withBorder>
+                                <Stack>
+                                    <Title order={2} c="blue.9">Create Profile</Title>
+
+                                    <Stack>
                                         <TextInput
-                                            mb={5}
-                                            id="first-name-input"
-                                            error={formValidationErrors.firstName}
-                                            onChange={e => {
-                                                handleFormChange({firstName: e.target.value});
-                                            }}
-                                            onBlur={() => handleFormValidation({
-                                                firstName: userInfo.firstName
-                                            })}
+                                            label="First Name"
+                                            placeholder="Enter your first name"
+                                            leftSection={<IconUser size={16} />}
+                                            error={formValidationErrors.firstName && "First name is required"}
+                                            onChange={e => handleFormChange({ firstName: e.target.value })}
+                                            onBlur={() => handleFormValidation({ firstName: userInfo.firstName })}
+                                            size="md"
                                         />
-                                        <Text component="label" mb={-15} size="sm" htmlFor="middle-name-input">
-                                            Middle Name
-                                        </Text>
+
                                         <TextInput
-                                            mb={5}
-                                            id="middle-name-input"
-                                            error={formValidationErrors.middleName}
-                                            onChange={e => {
-                                                handleFormChange({middleName: e.target.value});
-                                            }}
-                                            onBlur={() => handleFormValidation({
-                                                middleName: userInfo.middleName
-                                            })}
+                                            label="Middle Name"
+                                            placeholder="Enter your middle name"
+                                            leftSection={<IconUser size={16} />}
+                                            error={formValidationErrors.middleName && "Middle name is required"}
+                                            onChange={e => handleFormChange({ middleName: e.target.value })}
+                                            onBlur={() => handleFormValidation({ middleName: userInfo.middleName })}
+                                            size="md"
                                         />
-                                        <Text component="label" mb={-15} size="sm" htmlFor="last-name-input">
-                                            Last Name
-                                        </Text>
+
                                         <TextInput
-                                            mb={5}
-                                            id="last-name-input"
-                                            error={formValidationErrors.lastName}
-                                            onChange={e => {
-                                                handleFormChange({lastName: e.target.value});
-                                            }}
-                                            onBlur={() => handleFormValidation({
-                                                lastName: userInfo.lastName
-                                            })}
+                                            label="Last Name"
+                                            placeholder="Enter your last name"
+                                            leftSection={<IconUser size={16} />}
+                                            error={formValidationErrors.lastName && "Last name is required"}
+                                            onChange={e => handleFormChange({ lastName: e.target.value })}
+                                            onBlur={() => handleFormValidation({ lastName: userInfo.lastName })}
+                                            size="md"
                                         />
-                                        <Text component="label" mb={-15} size="sm" htmlFor="email-address-input">
-                                            Email Address
-                                        </Text>
+
                                         <TextInput
-                                            mb={5}
-                                            id="email-address-input"
-                                            error={formValidationErrors.emailAddress}
-                                            onChange={e => {
-                                                handleFormChange({emailAddress: e.target.value});
-                                            }}
-                                            onBlur={() => handleFormValidation({
-                                                emailAddress: userInfo.emailAddress
-                                            })}
+                                            label="Email Address"
+                                            placeholder="your.email@example.com"
+                                            leftSection={<IconAt size={16} />}
+                                            error={formValidationErrors.emailAddress && "Please enter a valid email address"}
+                                            onChange={e => handleFormChange({ emailAddress: e.target.value })}
+                                            onBlur={() => handleFormValidation({ emailAddress: userInfo.emailAddress })}
+                                            size="md"
                                         />
-                                        <Text component="label" mb={-15} size="sm" htmlFor="phone-number-input">
-                                            Phone Number
-                                        </Text>
+
                                         <TextInput
-                                            mb={5}
-                                            id="phone-number-input"
-                                            error={formValidationErrors.phoneNumber}
-                                            onChange={e => {
-                                                handleFormChange({phoneNumber: e.target.value});
-                                            }}
-                                            onBlur={() => handleFormValidation({
-                                                phoneNumber: userInfo.phoneNumber
-                                            })}
+                                            label="Phone Number"
+                                            placeholder="Enter your phone number"
+                                            leftSection={<IconPhone size={16} />}
+                                            error={formValidationErrors.phoneNumber && "Phone number must be at least 6 digits"}
+                                            onChange={e => handleFormChange({ phoneNumber: e.target.value })}
+                                            onBlur={() => handleFormValidation({ phoneNumber: userInfo.phoneNumber })}
+                                            size="md"
                                         />
-                                        <Text component="label" mb={-15} size="sm" htmlFor="zip-code-input">
-                                            Zip Code
-                                        </Text>
+
                                         <TextInput
-                                            mb={5}
-                                            id="zip-code-input"
-                                            error={formValidationErrors.zipCode}
-                                            onChange={e => {
-                                                handleFormChange({zipCode: e.target.value});
-                                            }}
-                                            onBlur={() => handleFormValidation({
-                                                zipCode: userInfo.zipCode
-                                            })}
+                                            label="Zip Code"
+                                            placeholder="Enter your zip code"
+                                            leftSection={<IconMapPin size={16} />}
+                                            error={formValidationErrors.zipCode && "Zip code must be at least 6 characters"}
+                                            onChange={e => handleFormChange({ zipCode: e.target.value })}
+                                            onBlur={() => handleFormValidation({ zipCode: userInfo.zipCode })}
+                                            size="md"
                                         />
                                     </Stack>
-                                </Card>
+
+                                    <Button
+                                        size="lg"
+                                        type="submit"
+                                        fullWidth
+                                        mt="md"
+                                        variant="gradient"
+                                        gradient={{ from: 'blue', to: 'cyan' }}
+                                    >
+                                        Continue
+                                    </Button>
+                                </Stack>
+                            </Paper>
+                        </Grid.Col>
+
+                        <Grid.Col span={{ base: 12, md: 6 }} order={{ base: 1, md: 2 }} visibleFrom="md">
+                            <Stack h="100%" justify="center" align="flex-start" pl="xl">
+                                <Title order={1} size="h2" fw={700} c="blue.9">
+                                    Welcome to Profile Creation
+                                </Title>
+                                <Text size="lg" c="gray.7" maw={450}>
+                                    Please fill in your personal information to get started. All fields are required to ensure
+                                    we can provide you with the best service.
+                                </Text>
+                                <Box
+                                    h={300}
+                                    w="100%"
+                                    style={{
+                                        borderRadius: 16,
+                                        overflow: 'hidden',
+                                        background: 'linear-gradient(45deg, var(--mantine-color-blue-6), var(--mantine-color-cyan-5))',
+                                        opacity: 0.8
+                                    }}
+                                />
                             </Stack>
                         </Grid.Col>
                     </Grid>
-                    <Button size="md" type="submit" bottom={50} right={{base: 20, md: 50}} style={{
-                        position: 'absolute'
-                    }}>
-                        Continue
-                    </Button>
                 </form>
-            </Stack>
+            </Container>
         </AuthenticatedPage>
+
     );
 }
 

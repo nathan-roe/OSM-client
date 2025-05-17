@@ -1,8 +1,15 @@
 "use client";
 import React from 'react';
 import AuthenticatedPage from "@/app/dashboard/AuthenticatedPage";
-import {ActionIcon, TextInput, Divider, Stack, Title, Text, Affix, Button, Card, Group, Box, Grid} from "@mantine/core";
-import {IconEdit} from "@tabler/icons-react";
+import {ActionIcon, TextInput, Container, Paper, Stack, Title, Text, Affix, Button, Card, Group, Box, Grid, ScrollArea, SimpleGrid} from "@mantine/core";
+import {
+    IconCertificate,
+    IconChecklist,
+    IconEdit,
+    IconIdBadge,
+    IconPackage,
+    IconShoppingCart, IconUser
+} from "@tabler/icons-react";
 
 interface OrderConfirmationProps {
 
@@ -12,92 +19,281 @@ const OrderConfirmation: React.FC<OrderConfirmationProps> = () => {
 
     return (
         <AuthenticatedPage>
-            <Stack w="90vw" pl={{sm: 0, md: 200}}>
-                <Title>Confirm Your Selections</Title>
-                <Text>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</Text>
-            <Grid w="100%">
-                <Grid.Col span={{sm: 12, md: 6}}>
-                    <Stack h="65vh" align="flex-start" justify="space-between" >
-                        <Card w="100%" mih="fit-content">
-                            <Group justify="space-between" align="center">
-                                <Text>User Information</Text>
-                                <ActionIcon>
-                                    <IconEdit/>
-                                </ActionIcon>
-                            </Group>
-                            <Divider mt={10} mb={20}/>
-                            <Grid>
-                                <Grid.Col span={4}>
-                                    <TextInput disabled value="first"/>
-                                </Grid.Col>
-                                <Grid.Col span={4}>
-                                    <TextInput disabled value="middle"/>
-                                </Grid.Col>
-                                <Grid.Col span={4}>
-                                    <TextInput disabled value="last"/>
-                                </Grid.Col>
-                            </Grid>
-                            <Grid mt={10}>
-                                <Grid.Col span={4}>
-                                    <TextInput disabled value="email"/>
-                                </Grid.Col>
-                                <Grid.Col span={4}>
-                                    <TextInput disabled value="phone"/>
-                                </Grid.Col>
-                                <Grid.Col span={4}>
-                                    <TextInput disabled value="zip"/>
-                                </Grid.Col>
-                            </Grid>
-                        </Card>
-                        <Card w="100%">
-                            <Group justify="space-between" align="center">
-                                <Text>Death Certificate</Text>
-                                <ActionIcon>
-                                    <IconEdit/>
-                                </ActionIcon>
-                            </Group>
-                            <Divider mt={10} mb={20}/>
-                            <Box h={100} w="100%" bg="lightgrey" style={{
-                                borderRadius: 5
-                            }}/>
-                        </Card>
-                        <Card w="100%">
-                            <Group justify="space-between" align="center">
-                                <Text>Driver's License or Government ID</Text>
-                                <ActionIcon>
-                                    <IconEdit/>
-                                </ActionIcon>
-                            </Group>
-                            <Divider mt={10} mb={20}/>
-                            <Box h={100} w="100%" bg="lightgrey" style={{
-                                borderRadius: 5
-                            }}/>
-                        </Card>
+            <Container size="xl" py="xl">
+                <Stack gap="xl">
+                    <Stack gap="xs">
+                        <Title order={1} size="h2" fw={700} c="blue.9">
+                            Review & Confirm
+                        </Title>
+                        <Text size="lg" c="gray.7" maw={600}>
+                            Please review your information and selections before proceeding to checkout
+                        </Text>
                     </Stack>
-                </Grid.Col>
-                <Grid.Col span={{sm: 12, md: 6}}>
-                    <Card w="100%" h="65vh">
-                        <Group justify="space-between" align="center">
-                            <Text>Selected Services</Text>
-                            <ActionIcon>
-                                <IconEdit/>
-                            </ActionIcon>
-                        </Group>
-                        <Divider mt={10} mb={20}/>
-                        <Group justify="center" w="100%" style={{overflowY: 'auto'}}>
-                            {Array.from(new Array(10)).map(() => (
-                                <Card withBorder shadow="sm" w={200} h={200}>
 
-                                </Card>
-                            ))}
-                        </Group>
-                    </Card>
-                </Grid.Col>
-            </Grid>
-            </Stack>
-            <Affix bottom={50} right={{base: 20, md: 50}}>
-                <Button size="md">
-                    Checkout
+                    <Grid>
+                        <Grid.Col span={{ base: 12, md: 6 }}>
+                            <Stack gap="lg">
+                                {/* User Information Card */}
+                                <Paper shadow="sm" radius="lg" p="xl" withBorder>
+                                    <Stack gap="md">
+                                        <Group justify="space-between">
+                                            <Group gap="xs">
+                                                <IconUser
+                                                    style={{ color: 'var(--mantine-color-blue-6)' }}
+                                                    size={20}
+                                                />
+                                                <Text fw={600} size="lg">Personal Information</Text>
+                                            </Group>
+                                            <ActionIcon
+                                                variant="light"
+                                                color="blue"
+                                                radius="xl"
+                                            >
+                                                <IconEdit size={18} />
+                                            </ActionIcon>
+                                        </Group>
+
+                                        <Grid gutter="md">
+                                            <Grid.Col span={{ base: 12, sm: 4 }}>
+                                                <TextInput
+                                                    label="First Name"
+                                                    disabled
+                                                    value="first"
+                                                    styles={{
+                                                        input: {
+                                                            backgroundColor: 'var(--mantine-color-gray-0)',
+                                                            '&:disabled': {
+                                                                opacity: 0.8
+                                                            }
+                                                        }
+                                                    }}
+                                                />
+                                            </Grid.Col>
+                                            <Grid.Col span={{ base: 12, sm: 4 }}>
+                                                <TextInput
+                                                    label="Middle Name"
+                                                    disabled
+                                                    value="middle"
+                                                    styles={{
+                                                        input: {
+                                                            backgroundColor: 'var(--mantine-color-gray-0)',
+                                                            '&:disabled': {
+                                                                opacity: 0.8
+                                                            }
+                                                        }
+                                                    }}
+                                                />
+                                            </Grid.Col>
+                                            <Grid.Col span={{ base: 12, sm: 4 }}>
+                                                <TextInput
+                                                    label="Last Name"
+                                                    disabled
+                                                    value="last"
+                                                    styles={{
+                                                        input: {
+                                                            backgroundColor: 'var(--mantine-color-gray-0)',
+                                                            '&:disabled': {
+                                                                opacity: 0.8
+                                                            }
+                                                        }
+                                                    }}
+                                                />
+                                            </Grid.Col>
+                                        </Grid>
+
+                                        <Grid gutter="md">
+                                            <Grid.Col span={{ base: 12, sm: 4 }}>
+                                                <TextInput
+                                                    label="Email"
+                                                    disabled
+                                                    value="email"
+                                                    styles={{
+                                                        input: {
+                                                            backgroundColor: 'var(--mantine-color-gray-0)',
+                                                            '&:disabled': {
+                                                                opacity: 0.8
+                                                            }
+                                                        }
+                                                    }}
+                                                />
+                                            </Grid.Col>
+                                            <Grid.Col span={{ base: 12, sm: 4 }}>
+                                                <TextInput
+                                                    label="Phone"
+                                                    disabled
+                                                    value="phone"
+                                                    styles={{
+                                                        input: {
+                                                            backgroundColor: 'var(--mantine-color-gray-0)',
+                                                            '&:disabled': {
+                                                                opacity: 0.8
+                                                            }
+                                                        }
+                                                    }}
+                                                />
+                                            </Grid.Col>
+                                            <Grid.Col span={{ base: 12, sm: 4 }}>
+                                                <TextInput
+                                                    label="ZIP Code"
+                                                    disabled
+                                                    value="zip"
+                                                    styles={{
+                                                        input: {
+                                                            backgroundColor: 'var(--mantine-color-gray-0)',
+                                                            '&:disabled': {
+                                                                opacity: 0.8
+                                                            }
+                                                        }
+                                                    }}
+                                                />
+                                            </Grid.Col>
+                                        </Grid>
+                                    </Stack>
+                                </Paper>
+
+                                {/* Documents Section */}
+                                <Paper shadow="sm" radius="lg" p="xl" withBorder>
+                                    <Stack gap="md">
+                                        <Group justify="space-between">
+                                            <Group gap="xs">
+                                                <IconCertificate
+                                                    style={{ color: 'var(--mantine-color-blue-6)' }}
+                                                    size={20}
+                                                />
+                                                <Text fw={600} size="lg">Death Certificate</Text>
+                                            </Group>
+                                            <ActionIcon
+                                                variant="light"
+                                                color="blue"
+                                                radius="xl"
+                                            >
+                                                <IconEdit size={18} />
+                                            </ActionIcon>
+                                        </Group>
+                                        <Box
+                                            p="xl"
+                                            style={{
+                                                backgroundColor: 'var(--mantine-color-gray-0)',
+                                                borderRadius: 'var(--mantine-radius-md)',
+                                                aspectRatio: '16/9',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center'
+                                            }}
+                                        >
+                                            <IconCertificate
+                                                size={48}
+                                                style={{ color: 'var(--mantine-color-gray-5)' }}
+                                            />
+                                        </Box>
+                                    </Stack>
+                                </Paper>
+
+                                <Paper shadow="sm" radius="lg" p="xl" withBorder>
+                                    <Stack gap="md">
+                                        <Group justify="space-between">
+                                            <Group gap="xs">
+                                                <IconIdBadge
+                                                    style={{ color: 'var(--mantine-color-blue-6)' }}
+                                                    size={20}
+                                                />
+                                                <Text fw={600} size="lg">Government ID</Text>
+                                            </Group>
+                                            <ActionIcon
+                                                variant="light"
+                                                color="blue"
+                                                radius="xl"
+                                            >
+                                                <IconEdit size={18} />
+                                            </ActionIcon>
+                                        </Group>
+                                        <Box
+                                            p="xl"
+                                            style={{
+                                                backgroundColor: 'var(--mantine-color-gray-0)',
+                                                borderRadius: 'var(--mantine-radius-md)',
+                                                aspectRatio: '16/9',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center'
+                                            }}
+                                        >
+                                            <IconIdBadge
+                                                size={48}
+                                                style={{ color: 'var(--mantine-color-gray-5)' }}
+                                            />
+                                        </Box>
+                                    </Stack>
+                                </Paper>
+                            </Stack>
+                        </Grid.Col>
+
+                        <Grid.Col span={{ base: 12, md: 6 }}>
+                            <Paper shadow="sm" radius="lg" withBorder style={{ height: '100%' }}>
+                                <Stack gap={0} style={{ height: '100%' }}>
+                                    <Group justify="space-between" p="xl">
+                                        <Group gap="xs">
+                                            <IconChecklist
+                                                style={{ color: 'var(--mantine-color-blue-6)' }}
+                                                size={20}
+                                            />
+                                            <Text fw={600} size="lg">Selected Services</Text>
+                                        </Group>
+                                        <ActionIcon
+                                            variant="light"
+                                            color="blue"
+                                            radius="xl"
+                                        >
+                                            <IconEdit size={18} />
+                                        </ActionIcon>
+                                    </Group>
+
+                                    <ScrollArea p="md" style={{ height: 'calc(100% - 60px)' }}>
+                                        <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="md">
+                                            {Array.from(new Array(10)).map((_, idx) => (
+                                                <Paper
+                                                    key={idx}
+                                                    shadow="sm"
+                                                    p="md"
+                                                    radius="md"
+                                                    withBorder
+                                                    style={{
+                                                        background: 'linear-gradient(135deg, var(--mantine-color-blue-0), var(--mantine-color-gray-0))'
+                                                    }}
+                                                >
+                                                    <Stack gap="xs" align="center">
+                                                        <IconPackage
+                                                            size={32}
+                                                            style={{ color: 'var(--mantine-color-blue-6)' }}
+                                                        />
+                                                        <Text size="sm" fw={500}>Service {idx + 1}</Text>
+                                                    </Stack>
+                                                </Paper>
+                                            ))}
+                                        </SimpleGrid>
+                                    </ScrollArea>
+                                </Stack>
+                            </Paper>
+                        </Grid.Col>
+                    </Grid>
+                </Stack>
+            </Container>
+
+            <Affix position={{ bottom: 20, right: 20 }}>
+                <Button
+                    size="lg"
+                    radius="xl"
+                    variant="gradient"
+                    gradient={{ from: 'blue', to: 'cyan' }}
+                    leftSection={<IconShoppingCart size={20} />}
+                    styles={{
+                        root: {
+                            padding: '0 30px',
+                            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
+                        }
+                    }}
+                >
+                    Proceed to Checkout
                 </Button>
             </Affix>
         </AuthenticatedPage>

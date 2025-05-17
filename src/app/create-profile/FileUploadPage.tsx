@@ -2,110 +2,126 @@
 import '@mantine/dropzone/styles.css';
 import React from 'react';
 import AuthenticatedPage from "@/app/dashboard/AuthenticatedPage";
-import {Divider, Title, Text, Stack, Group, Button, BackgroundImage} from '@mantine/core';
-import {Dropzone, FileWithPath, IMAGE_MIME_TYPE} from '@mantine/dropzone';
-import {IconPhoto, IconUpload, IconX} from "@tabler/icons-react";
-import {convertFileToBase64} from "@/common/fileUtils";
-import {FileUpload} from "@/query/deceasedUserManagement/useAddIdentificationToDeceasedUser";
-
+import { Divider, Title, Text, Stack, Group, Button, BackgroundImage, Paper, Container } from '@mantine/core';
+import { Dropzone, FileWithPath, IMAGE_MIME_TYPE } from '@mantine/dropzone';
+import { IconPhoto, IconUpload, IconX } from "@tabler/icons-react";
+import { convertFileToBase64 } from "@/common/fileUtils";
+import { FileUpload } from "@/query/deceasedUserManagement/useAddIdentificationToDeceasedUser";
 
 interface UploadCertificateProps {
     title: string;
     onSubmit: (file: FileUpload) => Promise<void>;
- }
+}
 
 const UploadCertificate: React.FC<UploadCertificateProps> = ({
     title,
     onSubmit
-                                                             }) => {
+}) => {
     const [validUpload, setValidUpload] = React.useState<boolean>(false);
     const [fileUpload, setFileUpload] = React.useState<FileWithPath>();
 
     const handleSubmit = React.useCallback(async () => {
-        if(!validUpload) {
+        if (!validUpload) {
             return;
         }
         const content = await convertFileToBase64(fileUpload as Blob);
-        onSubmit({content, name: fileUpload?.name ?? ""}).catch(console.error);
+        onSubmit({ content, name: fileUpload?.name ?? "" }).catch(console.error);
     }, [validUpload, fileUpload]);
 
     return (
         <AuthenticatedPage>
-            <Stack align="center" pl={{sm: 0, md: 200}}>
-                <Title variant="h6" fw="normal">Upload {title}</Title>
-                <Divider w={500} maw="90vw" />
-                <form onSubmit={e => {
-                    e.preventDefault();
-                    handleSubmit().catch(console.error);
-                }}>
-                    <Stack w={1000} maw={{
-                        base: "90vw",
-                        md: "calc(90vw - 200px)",
-                    }}>
-                        <Dropzone
-                            h="100%"
-                            my={50}
-                            onDrop={(files) => {
-                                setValidUpload(true);
-                                setFileUpload(files[0]);
-                            }}
-                            onReject={() => setValidUpload(false)}
-                            maxSize={5 * 1024 ** 2}
-                            accept={IMAGE_MIME_TYPE}
-                            style={{position: 'relative'}}
-                        >
-                            <BackgroundImage src={
-                                fileUpload
-                                    ? URL.createObjectURL(fileUpload)
-                                    : ""
-                            }>
-                                <Group justify="center" gap='xl' mih={220} style={{pointerEvents: 'none'}}>
-                                    <Dropzone.Accept>
-                                        <IconUpload
-                                            style={{ width: "rem(52)", height: "rem(52)", color: 'var(--mantine-color-blue-6)' }}
-                                            stroke={1.5}
-                                        />
-                                    </Dropzone.Accept>
-                                    <Dropzone.Reject>
-                                        <IconX
-                                            style={{ width: "rem(52)", height: "rem(52)", color: 'var(--mantine-color-red-6)' }}
-                                            stroke={1.5}
-                                        />
-                                    </Dropzone.Reject>
-                                    <Dropzone.Idle>
-                                        <IconPhoto
-                                            style={{ width: "rem(52)", height: "rem(52)", color: 'var(--mantine-color-dimmed)' }}
-                                            stroke={1.5}
-                                        />
-                                    </Dropzone.Idle>
+            <Container size="lg">
+                <Paper shadow="sm" p="xl" radius="md" withBorder>
+                    <Stack>
+                        <Title order={2} fw={500} ta="center">Upload {title}</Title>
+                        <Divider />
+                        
+                        <form onSubmit={e => {
+                            e.preventDefault();
+                            handleSubmit().catch(console.error);
+                        }}>
+                            <Stack>
+                                <Dropzone
+                                    h={300}
+                                    onDrop={(files) => {
+                                        setValidUpload(true);
+                                        setFileUpload(files[0]);
+                                    }}
+                                    onReject={() => setValidUpload(false)}
+                                    maxSize={5 * 1024 ** 2}
+                                    accept={IMAGE_MIME_TYPE}
+                                    radius="md"
+                                    style={{ position: 'relative' }}
+                                >
+                                    <BackgroundImage 
+                                        src={fileUpload ? URL.createObjectURL(fileUpload) : ""}
+                                        radius="md"
+                                    >
+                                        <Group 
+                                            justify="center" 
+                                            align="center" 
+                                            style={{ 
+                                                minHeight: 300,
+                                                backgroundColor: fileUpload ? 'rgba(0,0,0,0.3)' : 'transparent',
+                                            }}
+                                        >
+                                            <Stack align="center">
+                                                <Dropzone.Accept>
+                                                    <IconUpload
+                                                        size={52}
+                                                        color="var(--mantine-color-blue-6)"
+                                                        stroke={1.5}
+                                                    />
+                                                </Dropzone.Accept>
+                                                <Dropzone.Reject>
+                                                    <IconX
+                                                        size={52}
+                                                        color="var(--mantine-color-red-6)"
+                                                        stroke={1.5}
+                                                    />
+                                                </Dropzone.Reject>
+                                                <Dropzone.Idle>
+                                                    <IconPhoto
+                                                        size={52}
+                                                        color="var(--mantine-color-dimmed)"
+                                                        stroke={1.5}
+                                                    />
+                                                </Dropzone.Idle>
 
-                                    {
-                                        fileUpload ? (
-                                            <Text size="xl" inline>
-                                                {fileUpload.name}
-                                            </Text>
-                                        ) : (
-                                            <div>
-                                                <Text size="xl" inline>
-                                                    Drag {title.toLowerCase()} here or click to select from files
-                                                </Text>
-                                                <Text size="sm" c="dimmed" inline mt={7}>
-                                                    Attach your {title.toLowerCase()}. This file should not exceed 5mb
-                                                </Text>
-                                            </div>
-                                        )
-                                    }
+                                                {fileUpload ? (
+                                                    <Text size="xl" c="white" fw={500}>
+                                                        {fileUpload.name}
+                                                    </Text>
+                                                ) : (
+                                                    <Stack align="center" spacing={5}>
+                                                        <Text size="xl" fw={500}>
+                                                            Drag {title.toLowerCase()} here or click to select
+                                                        </Text>
+                                                        <Text size="sm" c="dimmed">
+                                                            Maximum file size: 5MB
+                                                        </Text>
+                                                    </Stack>
+                                                )}
+                                            </Stack>
+                                        </Group>
+                                    </BackgroundImage>
+                                </Dropzone>
+
+                                <Group justify="flex-end">
+                                    <Button 
+                                        size="lg"
+                                        type="submit"
+                                        disabled={!validUpload}
+                                        variant="filled"
+                                    >
+                                        Continue
+                                    </Button>
                                 </Group>
-                            </BackgroundImage>
-                        </Dropzone>
+                            </Stack>
+                        </form>
                     </Stack>
-                    <Button size="md" type="submit" bottom={50} right={{base: 20, md: 50}} style={{
-                        position: 'absolute'
-                    }}>
-                        Continue
-                    </Button>
-                </form>
-            </Stack>
+                </Paper>
+            </Container>
         </AuthenticatedPage>
     );
 }

@@ -36,8 +36,6 @@ const AuthenticatedShell: React.FC<AuthenticatedPageProps> = ({children}) => {
     const {user} = useAuth();
     const {overlay} = usePageLoadIndicator();
 
-    console.log("user auth: ", user)
-
     return (
         <AppShell
             header={{ height: '50px' }}
