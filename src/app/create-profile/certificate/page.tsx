@@ -8,6 +8,7 @@ import FileUploadPage from "@/app/create-profile/FileUploadPage";
 import {useCreationProgress} from "@/context/UserCreationProgressContext";
 import {UserCreationProgress} from "@/query/deceasedUserManagement/useUserCreationProgress";
 import {usePageLoadIndicator} from "@/context/LoadingContext";
+import {IconFileCertificate} from "@tabler/icons-react";
 
 
 interface UploadCertificateProps {
@@ -33,7 +34,9 @@ const UploadCertificate: React.FC<UploadCertificateProps> = () => {
     return (
         <FileUploadPage
             onSubmit={onSubmit}
-            title="Certificate"
+            title="Death Certificate"
+            icon={IconFileCertificate}
+            description="An official document issued by a medical practitioner which confirms the date, location, and cause of a person's death."
         />
     );
 }

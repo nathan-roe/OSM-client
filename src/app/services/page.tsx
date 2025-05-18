@@ -185,7 +185,7 @@ const Services: React.FC<ServicesProps> = () => {
                     </SimpleGrid>
                 </Container>
 
-                <Affix position={{ bottom: 20, right: 20 }}>
+                <Affix position={{ bottom: 75, right: 20 }}>
                     <Button
                         size="lg"
                         radius="xl"
