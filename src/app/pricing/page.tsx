@@ -98,7 +98,7 @@ export default function PublicPricingPage() {
             <Container size="xl" py="xl">
                 <Stack gap="xl">
                     <Stack gap="xs" ta="center">
-                        <Title order={1} size="h2" fw={700} c="blue.9">
+                        <Title order={1} size="h2" fw={700} c="var(--mantine-color-primary-5).9">
                             Transparent Pricing
                         </Title>
                         <Text size="lg" c="gray.7" maw={600} mx="auto">
@@ -116,7 +116,7 @@ export default function PublicPricingPage() {
                                 withBorder
                                 style={{
                                     borderColor: tier.highlighted
-                                        ? 'var(--mantine-color-blue-5)'
+                                        ? 'var(--mantine-color-primary-5)'
                                         : undefined,
                                     borderWidth: tier.highlighted ? 2 : 1,
                                     maxWidth: rem(400),
@@ -127,7 +127,7 @@ export default function PublicPricingPage() {
                                 {tier.highlighted && (
                                     <Badge
                                         variant="gradient"
-                                        gradient={{ from: 'blue', to: 'cyan' }}
+                                        gradient={{ from: 'var(--mantine-color-primary-5)', to: 'var(--mantine-color-secondary-5)' }}
                                         size="lg"
                                         style={{
                                             position: 'absolute',
@@ -145,7 +145,7 @@ export default function PublicPricingPage() {
                                             size={44}
                                             radius="md"
                                             variant={tier.highlighted ? "gradient" : "light"}
-                                            gradient={tier.highlighted ? { from: 'blue', to: 'cyan' } : undefined}
+                                            gradient={tier.highlighted ? { from: 'var(--mantine-color-primary-5)', to: 'var(--mantine-color-secondary-5)' } : undefined}
                                         >
                                             {tier.icon}
                                         </ThemeIcon>
@@ -171,7 +171,7 @@ export default function PublicPricingPage() {
                                                 icon={
                                                     feature.included ? (
                                                         <ThemeIcon
-                                                            color="blue"
+                                                            color="var(--mantine-color-primary-5)"
                                                             size={22}
                                                             radius="xl"
                                                             variant="light"
@@ -204,7 +204,7 @@ export default function PublicPricingPage() {
                                         component="a"
                                         href={tier.ctaLink}
                                         variant={tier.highlighted ? "gradient" : "light"}
-                                        gradient={{ from: 'blue', to: 'cyan' }}
+                                        gradient={{ from: 'var(--mantine-color-primary-5)', to: 'var(--mantine-color-secondary-5)' }}
                                         size="md"
                                         radius="md"
                                         fullWidth

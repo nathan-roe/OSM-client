@@ -60,10 +60,10 @@ const AuthenticatedNavBar: React.FC<AuthenticatedNavBarProps> = () => {
                             size={28}
                             radius="xl"
                             variant={progress >= 0 ? "gradient" : "light"}
-                            gradient={{ from: 'blue.6', to: 'cyan.5' }}
+                            gradient={{ from: 'var(--mantine-color-primary-5).6', to: 'var(--mantine-color-secondary-5).5' }}
                             style={{
                                 boxShadow: progress >= 0
-                                    ? '0 0 12px var(--mantine-color-blue-3)'
+                                    ? '0 0 12px var(--mantine-color-primary-3)'
                                     : 'none'
                             }}
                         >
@@ -83,10 +83,10 @@ const AuthenticatedNavBar: React.FC<AuthenticatedNavBarProps> = () => {
                             size={28}
                             radius="xl"
                             variant={progress >= 1 ? "gradient" : "light"}
-                            gradient={{ from: 'blue.6', to: 'cyan.5' }}
+                            gradient={{ from: 'var(--mantine-color-primary-5).6', to: 'var(--mantine-color-secondary-5).5' }}
                             style={{
                                 boxShadow: progress >= 1
-                                    ? '0 0 12px var(--mantine-color-blue-3)'
+                                    ? '0 0 12px var(--mantine-color-primary-3)'
                                     : 'none'
                             }}
                         >
@@ -106,10 +106,10 @@ const AuthenticatedNavBar: React.FC<AuthenticatedNavBarProps> = () => {
                             size={28}
                             radius="xl"
                             variant={progress >= 2 ? "gradient" : "light"}
-                            gradient={{ from: 'blue.6', to: 'cyan.5' }}
+                            gradient={{ from: 'var(--mantine-color-primary-5).6', to: 'var(--mantine-color-secondary-5).5' }}
                             style={{
                                 boxShadow: progress >= 2
-                                    ? '0 0 12px var(--mantine-color-blue-3)'
+                                    ? '0 0 12px var(--mantine-color-primary-3)'
                                     : 'none'
                             }}
                         >
@@ -129,10 +129,10 @@ const AuthenticatedNavBar: React.FC<AuthenticatedNavBarProps> = () => {
                             size={28}
                             radius="xl"
                             variant={progress >= 3 ? "gradient" : "light"}
-                            gradient={{ from: 'blue.6', to: 'cyan.5' }}
+                            gradient={{ from: 'var(--mantine-color-primary-5).6', to: 'var(--mantine-color-secondary-5).5' }}
                             style={{
                                 boxShadow: progress >= 3
-                                    ? '0 0 12px var(--mantine-color-blue-3)'
+                                    ? '0 0 12px var(--mantine-color-primary-3)'
                                     : 'none'
                             }}
                         >
@@ -152,10 +152,10 @@ const AuthenticatedNavBar: React.FC<AuthenticatedNavBarProps> = () => {
                             size={28}
                             radius="xl"
                             variant={progress >= 4 ? "gradient" : "light"}
-                            gradient={{ from: 'blue.6', to: 'cyan.5' }}
+                            gradient={{ from: 'var(--mantine-color-primary-5).6', to: 'var(--mantine-color-secondary-5).5' }}
                             style={{
                                 boxShadow: progress >= 4
-                                    ? '0 0 12px var(--mantine-color-blue-3)'
+                                    ? '0 0 12px var(--mantine-color-primary-3)'
                                     : 'none'
                             }}
                         >
@@ -176,10 +176,10 @@ const AuthenticatedNavBar: React.FC<AuthenticatedNavBarProps> = () => {
                     value={(progress / 4) * 100}
                     size="sm"
                     radius="xl"
-                    color="blue.6"
+                    color="var(--mantine-color-primary-5).6"
                 />
                 <Text size="xs" c="dimmed" ta="right" mt={4}>
-                    {progress + 1} of 5 steps
+                    {(progress || 0) + 1} of 5 steps
                 </Text>
             </Box>
         </Stack>

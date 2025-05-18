@@ -69,7 +69,7 @@ const UploadCertificate: React.FC<UploadCertificateProps> = ({
                                                 <Dropzone.Accept>
                                                     <IconUpload
                                                         size={52}
-                                                        color="var(--mantine-color-blue-6)"
+                                                        color="var(--mantine-color-primary-6)"
                                                         stroke={1.5}
                                                     />
                                                 </Dropzone.Accept>

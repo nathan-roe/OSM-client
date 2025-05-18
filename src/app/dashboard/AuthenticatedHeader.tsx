@@ -44,108 +44,106 @@ const AuthenticatedHeader: React.FC<AuthenticatedHeaderProps> = () => {
             }}
 
         >
-            <Container size="xl" h="100%">
-                <Group h="100%" justify="space-between">
-                    <UnstyledButton
-                        onClick={() => router.push("/")}
-                        style={{
-                            transition: 'transform 150ms ease',
-                            '&:hover': {
-                                transform: 'translateY(-1px)'
-                            }
-                        }}
-                    >
-                        <Group gap={8}>
-                            <ThemeIcon
-                                size={38}
-                                radius="md"
-                                variant="gradient"
-                                gradient={{ from: 'teal', to: 'lime', deg: 90 }}
-                            >
-                                <IconLeaf2 size={24} style={{ transform: 'rotate(-15deg)' }} />
-                            </ThemeIcon>
-                            <Stack gap={0}>
-                                <Text size="lg" fw={700} style={{ letterSpacing: '-0.5px' }}>
-                                    Digital Remains
-                                </Text>
-                                <Text size="xs" c="dimmed" style={{ letterSpacing: '0.5px' }}>
-                                    DIGITAL LEGACY MANAGEMENT
-                                </Text>
-                            </Stack>
-                        </Group>
-                    </UnstyledButton>
-
-                    <Group>
-                        <Button
-                            variant="subtle"
-                            leftSection={<IconHelp size={16} />}
-                            size="sm"
+            <Group h="100%" justify="space-between">
+                <UnstyledButton
+                    onClick={() => router.push("/")}
+                    style={{
+                        transition: 'transform 150ms ease',
+                        '&:hover': {
+                            transform: 'translateY(-1px)'
+                        }
+                    }}
+                >
+                    <Group gap={8}>
+                        <ThemeIcon
+                            size={38}
+                            radius="md"
+                            variant="gradient"
+                            gradient={{ from: 'teal', to: 'lime', deg: 90 }}
                         >
-                            Help Center
-                        </Button>
-
-                        <Menu
-                            position="bottom-end"
-                            offset={4}
-                            shadow="md"
-                            width={200}
-                        >
-                            <Menu.Target>
-                                <UnstyledButton>
-                                    <Group gap="xs">
-                                        <Avatar
-                                            radius="xl"
-                                            size="md"
-                                            variant="filled"
-                                            color="blue"
-                                        >
-                                            <IconUserFilled size={20} />
-                                        </Avatar>
-                                        <Box style={{ flex: 1 }}>
-                                            <Text size="sm" fw={500}>
-                                                Admin User
-                                            </Text>
-                                            <Text c="dimmed" size="xs">
-                                                admin@example.com
-                                            </Text>
-                                        </Box>
-                                        <IconChevronDown size={16} color="gray" />
-                                    </Group>
-                                </UnstyledButton>
-                            </Menu.Target>
-
-                            <Menu.Dropdown>
-                                <Menu.Label>Account</Menu.Label>
-                                <Menu.Item
-                                    leftSection={<IconUserCircle size={16} />}
-                                >
-                                    Profile
-                                </Menu.Item>
-                                <Menu.Item
-                                    leftSection={<IconSettings size={16} />}
-                                >
-                                    Settings
-                                </Menu.Item>
-                                <Menu.Divider />
-                                <Menu.Label>Support</Menu.Label>
-                                <Menu.Item
-                                    leftSection={<IconMessageCircle size={16} />}
-                                >
-                                    Contact Support
-                                </Menu.Item>
-                                <Menu.Divider />
-                                <Menu.Item
-                                    color="red"
-                                    leftSection={<IconLogout size={16} />}
-                                    onClick={() => logout().catch(console.error)}
-                                >
-                                    Logout
-                                </Menu.Item>
-                            </Menu.Dropdown>
-                        </Menu>
+                            <IconLeaf2 size={24} style={{ transform: 'rotate(-15deg)' }} />
+                        </ThemeIcon>
+                        <Stack gap={0}>
+                            <Text size="lg" fw={700} style={{ letterSpacing: '-0.5px' }}>
+                                Digital Remains
+                            </Text>
+                            <Text size="xs" c="dimmed" style={{ letterSpacing: '0.5px' }}>
+                                DIGITAL LEGACY MANAGEMENT
+                            </Text>
+                        </Stack>
                     </Group>
+                </UnstyledButton>
+
+                <Group>
+                    <Button
+                        variant="subtle"
+                        leftSection={<IconHelp size={16} />}
+                        size="sm"
+                    >
+                        Help Center
+                    </Button>
+
+                    <Menu
+                        position="bottom-end"
+                        offset={4}
+                        shadow="md"
+                        width={200}
+                    >
+                        <Menu.Target>
+                            <UnstyledButton>
+                                <Group gap="xs">
+                                    <Avatar
+                                        radius="xl"
+                                        size="md"
+                                        variant="filled"
+                                        color="var(--mantine-color-primary-5)"
+                                    >
+                                        <IconUserFilled size={20} />
+                                    </Avatar>
+                                    <Box style={{ flex: 1 }}>
+                                        <Text size="sm" fw={500}>
+                                            Admin User
+                                        </Text>
+                                        <Text c="dimmed" size="xs">
+                                            admin@example.com
+                                        </Text>
+                                    </Box>
+                                    <IconChevronDown size={16} color="gray" />
+                                </Group>
+                            </UnstyledButton>
+                        </Menu.Target>
+
+                        <Menu.Dropdown>
+                            <Menu.Label>Account</Menu.Label>
+                            <Menu.Item
+                                leftSection={<IconUserCircle size={16} />}
+                            >
+                                Profile
+                            </Menu.Item>
+                            <Menu.Item
+                                leftSection={<IconSettings size={16} />}
+                            >
+                                Settings
+                            </Menu.Item>
+                            <Menu.Divider />
+                            <Menu.Label>Support</Menu.Label>
+                            <Menu.Item
+                                leftSection={<IconMessageCircle size={16} />}
+                            >
+                                Contact Support
+                            </Menu.Item>
+                            <Menu.Divider />
+                            <Menu.Item
+                                color="red"
+                                leftSection={<IconLogout size={16} />}
+                                onClick={() => logout().catch(console.error)}
+                            >
+                                Logout
+                            </Menu.Item>
+                        </Menu.Dropdown>
+                    </Menu>
                 </Group>
-            </Container>
+            </Group>
         </Paper>
     );
 }

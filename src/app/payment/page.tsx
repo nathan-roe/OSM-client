@@ -106,7 +106,7 @@ const PricingPage: React.FC = () => {
             <Container size="xl" py="xl">
                 <Stack gap="xl">
                     <Stack gap="xs" ta="center">
-                        <Title order={1} size="h2" fw={700} c="blue.9">
+                        <Title order={1} size="h2" fw={700} c="var(--mantine-color-primary-5).9">
                             Choose Your Plan
                         </Title>
                         <Text size="lg" c="gray.7" maw={600} mx="auto">
@@ -124,7 +124,7 @@ const PricingPage: React.FC = () => {
                                 withBorder
                                 style={{
                                     borderColor: tier.highlighted
-                                        ? 'var(--mantine-color-blue-5)'
+                                        ? 'var(--mantine-color-primary-5)'
                                         : undefined,
                                     borderWidth: tier.highlighted ? 2 : 1,
                                     maxWidth: rem(400),
@@ -136,7 +136,7 @@ const PricingPage: React.FC = () => {
                                 {tier.highlighted && (
                                     <Badge
                                         variant="gradient"
-                                        gradient={{ from: 'blue', to: 'cyan' }}
+                                        gradient={{ from: 'var(--mantine-color-primary-5)', to: 'var(--mantine-color-secondary-5)' }}
                                         size="lg"
                                         style={{
                                             position: 'absolute',
@@ -154,7 +154,7 @@ const PricingPage: React.FC = () => {
                                             size={44}
                                             radius="md"
                                             variant={tier.highlighted ? "gradient" : "light"}
-                                            gradient={tier.highlighted ? { from: 'blue', to: 'cyan' } : undefined}
+                                            gradient={tier.highlighted ? { from: 'var(--mantine-color-primary-5)', to: 'var(--mantine-color-secondary-5)' } : undefined}
                                         >
                                             {tier.icon}
                                         </ThemeIcon>
@@ -179,7 +179,7 @@ const PricingPage: React.FC = () => {
                                         center
                                         icon={
                                             <ThemeIcon
-                                                color="blue"
+                                                color="var(--mantine-color-primary-5)"
                                                 size={22}
                                                 radius="xl"
                                                 variant="light"
@@ -194,7 +194,7 @@ const PricingPage: React.FC = () => {
                                                 icon={
                                                     feature.included ? (
                                                         <ThemeIcon
-                                                            color="blue"
+                                                            color="var(--mantine-color-primary-5)"
                                                             size={22}
                                                             radius="xl"
                                                             variant="light"
@@ -225,7 +225,7 @@ const PricingPage: React.FC = () => {
 
                                     <Button
                                         variant={selectedTier === tier.title ? "gradient" : "light"}
-                                        gradient={{ from: 'blue', to: 'cyan' }}
+                                        gradient={{ from: 'var(--mantine-color-primary-5)', to: 'var(--mantine-color-secondary-5)' }}
                                         size="md"
                                         radius="md"
                                         fullWidth
@@ -244,7 +244,7 @@ const PricingPage: React.FC = () => {
                                 size="lg"
                                 radius="xl"
                                 variant="gradient"
-                                gradient={{ from: 'blue', to: 'cyan' }}
+                                gradient={{ from: 'var(--mantine-color-primary-5)', to: 'var(--mantine-color-secondary-5)' }}
                                 onClick={handleContinue}
                                 styles={{
                                     root: {

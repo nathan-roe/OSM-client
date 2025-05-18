@@ -42,7 +42,7 @@ const Footer = () => {
                         style={{
                             transition: 'color 150ms ease',
                             '&:hover': {
-                                color: 'var(--mantine-color-blue-6)'
+                                color: 'var(--mantine-color-primary-6)'
                             }
                         }}
                     >
@@ -60,7 +60,7 @@ const Footer = () => {
                         style={{
                             transition: 'color 150ms ease',
                             '&:hover': {
-                                color: 'var(--mantine-color-blue-6)'
+                                color: 'var(--mantine-color-primary-6)'
                             }
                         }}
                     >

@@ -66,16 +66,16 @@ const SignInCard: React.FC<SignInCardProps> = ({autoFocus}) => {
                         <Text size="xs" c="dimmed" style={{
                             textAlign: 'center'
                         }}>By selecting Sign In, you agree to our&nbsp;
-                            <Box c="blue" variant="link" component={Link} href="/">
+                            <Box c="var(--mantine-color-primary-5)" variant="link" component={Link} href="/">
                                 Terms
                             </Box>&nbsp;and acknowledge our&nbsp;
-                            <Box c="blue" variant="link" component={Link} href="/">
+                            <Box c="var(--mantine-color-primary-5)" variant="link" component={Link} href="/">
                                 Privacy Statement
                             </Box>
                             .</Text>
                         <Text size="sm" style={{display: 'inline-block'}}>
                             Not already a user?&nbsp;
-                            <Box c="blue" variant="link" component={Link} href="/signup">
+                            <Box c="var(--mantine-color-primary-5)" variant="link" component={Link} href="/signup">
                                 Create an account
                             </Box>
                         </Text>

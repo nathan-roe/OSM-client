@@ -274,7 +274,7 @@ const SignUpPage = () => {
                         pt={50}
                         gap="xl"
                         style={{
-                            background: 'linear-gradient(135deg, var(--mantine-color-primary-0) 0%, var(--mantine-color-cyan-0) 100%)',
+                            background: 'linear-gradient(135deg, var(--mantine-color-primary-0) 0%, var(--mantine-color-primary-0) 100%)',
                         }}
                     >
                         <Title
@@ -387,7 +387,7 @@ const CustomSignUpActions = () => {
             <Stack visibleFrom="md">
                 <Text size="xs">
                     Already have an account?<br/>
-                    <Box c="blue" variant="link" component={Link} href="/">
+                    <Box c="var(--mantine-color-primary-5)" variant="link" component={Link} href="/">
                         I forgot my password
                     </Box>
                 </Text>

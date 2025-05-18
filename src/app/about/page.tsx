@@ -99,7 +99,7 @@ const AboutPage = () => {
             {/* Hero Section */}
             <Box
                 style={{
-                    background: 'linear-gradient(135deg, var(--mantine-color-blue-6) 0%, var(--mantine-color-cyan-5) 100%)',
+                    background: 'linear-gradient(135deg, var(--mantine-color-primary-5) 100%)',
                     padding: `${rem(60)} 0`,
                     marginBottom: rem(80)
                 }}
@@ -108,7 +108,7 @@ const AboutPage = () => {
                     <Stack align="center" gap="xl">
                         <Badge
                             variant="gradient"
-                            gradient={{ from: 'cyan', to: 'blue' }}
+                            gradient={{ from: 'var(--mantine-color-secondary-5)', to: 'var(--mantine-color-primary-5)' }}
                             size="lg"
                             radius="xl"
                             px="xl"
@@ -145,7 +145,7 @@ const AboutPage = () => {
                 <SimpleGrid cols={{ base: 1, md: 2 }} spacing={40}>
                     <Paper shadow="md" radius="lg" p="xl" withBorder>
                         <Group mb="md">
-                            <ThemeIcon size={56} radius="md" variant="gradient" gradient={{ from: 'blue', to: 'cyan' }}>
+                            <ThemeIcon size={56} radius="md" variant="gradient" gradient={{ from: 'var(--mantine-color-primary-5)', to: 'var(--mantine-color-secondary-5)' }}>
                                 <IconTargetArrow size={28} />
                             </ThemeIcon>
                             <Title order={2}>Our Mission</Title>
@@ -158,7 +158,7 @@ const AboutPage = () => {
 
                     <Paper shadow="md" radius="lg" p="xl" withBorder>
                         <Group mb="md">
-                            <ThemeIcon size={56} radius="md" variant="gradient" gradient={{ from: 'blue', to: 'cyan' }}>
+                            <ThemeIcon size={56} radius="md" variant="gradient" gradient={{ from: 'var(--mantine-color-primary-5)', to: 'var(--mantine-color-secondary-5)' }}>
                                 <IconFlag size={28} />
                             </ThemeIcon>
                             <Title order={2}>Our Vision</Title>
@@ -174,7 +174,7 @@ const AboutPage = () => {
             {/* Company Values */}
             <Container size="xl" mb={80}>
                 <Stack align="center" mb={40}>
-                    <Title order={2} size="h1" fw={800} c="blue.9">Our Values</Title>
+                    <Title order={2} size="h1" fw={800} c="var(--mantine-color-primary-5).9">Our Values</Title>
                     <Text size="lg" c="dimmed" maw={600} ta="center">
                         These core values guide every decision we make and every service we provide
                     </Text>
@@ -200,7 +200,7 @@ const AboutPage = () => {
                                 size={50}
                                 radius="md"
                                 variant="gradient"
-                                gradient={{ from: 'blue', to: 'cyan' }}
+                                gradient={{ from: 'var(--mantine-color-primary-5)', to: 'var(--mantine-color-secondary-5)' }}
                                 mb="md"
                             >
                                 <value.icon size={26} />
@@ -216,7 +216,7 @@ const AboutPage = () => {
             <Box bg="gray.0" py={80}>
                 <Container size="xl">
                     <Stack align="center" mb={40}>
-                        <Title order={2} size="h1" fw={800} c="blue.9">Our Journey</Title>
+                        <Title order={2} size="h1" fw={800} c="var(--mantine-color-primary-5).9">Our Journey</Title>
                         <Text size="lg" c="dimmed" maw={600} ta="center">
                             Key milestones in our mission to simplify digital legacy management
                         </Text>
@@ -257,7 +257,7 @@ const AboutPage = () => {
                                 size={60}
                                 radius="md"
                                 variant="light"
-                                color="blue"
+                                color="var(--mantine-color-primary-5)"
                                 mb="md"
                             >
                                 <stat.icon size={30} />
@@ -273,7 +273,7 @@ const AboutPage = () => {
             <Box bg="gray.0" py={80}>
                 <Container size="xl">
                     <Stack align="center" mb={40}>
-                        <Title order={2} size="h1" fw={800} c="blue.9">Our Leadership</Title>
+                        <Title order={2} size="h1" fw={800} c="var(--mantine-color-primary-5).9">Our Leadership</Title>
                         <Text size="lg" c="dimmed" maw={600} ta="center">
                             Meet the team dedicated to simplifying digital legacy management
                         </Text>

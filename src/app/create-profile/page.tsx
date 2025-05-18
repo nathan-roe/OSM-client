@@ -133,7 +133,7 @@ const CreateProfile: React.FC<CreateProfileProps> = () => {
                         <Grid.Col span={{ base: 12, md: 6 }} order={{ base: 2, md: 1 }}>
                             <Paper shadow="md" radius="lg" p="xl" withBorder>
                                 <Stack>
-                                    <Title order={2} c="blue.9">Create Profile</Title>
+                                    <Title order={2} c="var(--mantine-color-primary-5).9">Create Profile</Title>
 
                                     <Stack>
                                         <TextInput
@@ -203,7 +203,7 @@ const CreateProfile: React.FC<CreateProfileProps> = () => {
                                         fullWidth
                                         mt="md"
                                         variant="gradient"
-                                        gradient={{ from: 'blue', to: 'cyan' }}
+                                        gradient={{ from: 'var(--mantine-color-primary-5)', to: 'var(--mantine-color-secondary-5)' }}
                                     >
                                         Continue
                                     </Button>
@@ -213,7 +213,7 @@ const CreateProfile: React.FC<CreateProfileProps> = () => {
 
                         <Grid.Col span={{ base: 12, md: 6 }} order={{ base: 1, md: 2 }} visibleFrom="md">
                             <Stack h="100%" justify="center" align="flex-start" pl="xl">
-                                <Title order={1} size="h2" fw={700} c="blue.9">
+                                <Title order={1} size="h2" fw={700} c="var(--mantine-color-primary-5).9">
                                     Welcome to Profile Creation
                                 </Title>
                                 <Text size="lg" c="gray.7" maw={450}>
@@ -226,7 +226,7 @@ const CreateProfile: React.FC<CreateProfileProps> = () => {
                                     style={{
                                         borderRadius: 16,
                                         overflow: 'hidden',
-                                        background: 'linear-gradient(45deg, var(--mantine-color-blue-6), var(--mantine-color-cyan-5))',
+                                        background: 'linear-gradient(45deg, var(--mantine-color-primary-5))',
                                         opacity: 0.8
                                     }}
                                 />

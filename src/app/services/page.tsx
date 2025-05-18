@@ -75,7 +75,7 @@ const Services: React.FC<ServicesProps> = () => {
             <Stack px="md" py="xl">
                 <Container size="xl">
                     <Stack align="center">
-                        <Title order={1} ta="center" size="h2" fw={700} c="blue.9">
+                        <Title order={1} ta="center" size="h2" fw={700} c="var(--mantine-color-primary-5).9">
                             Select Your Services
                         </Title>
 
@@ -87,12 +87,12 @@ const Services: React.FC<ServicesProps> = () => {
                             size="lg"
                             radius="xl"
                             w={{ base: '95%', sm: '70%', md: '50%' }}
-                            leftSection={<IconSearch size={20} style={{ color: 'var(--mantine-color-blue-6)' }} />}
+                            leftSection={<IconSearch size={20} style={{ color: 'var(--mantine-color-primary-6)' }} />}
                             styles={{
                                 input: {
                                     '&:focus': {
-                                        borderColor: 'var(--mantine-color-blue-5)',
-                                        boxShadow: '0 0 0 3px var(--mantine-color-blue-1)',
+                                        borderColor: 'var(--mantine-color-primary-5)',
+                                        boxShadow: '0 0 0 3px var(--mantine-color-primary-1)',
                                     },
                                 },
                             }}
@@ -118,7 +118,7 @@ const Services: React.FC<ServicesProps> = () => {
                                         cursor: 'pointer',
                                         transform: selected ? 'scale(1.02)' : 'scale(1)',
                                         transition: 'all 0.2s ease',
-                                        border: selected ? '2px solid var(--mantine-color-blue-5)' : undefined,
+                                        border: selected ? '2px solid var(--mantine-color-primary-5)' : undefined,
                                     }}
                                     onClick={() => handleSelection(availableService)}
                                 >
@@ -134,7 +134,7 @@ const Services: React.FC<ServicesProps> = () => {
                                             <Badge
                                                 radius="xl"
                                                 variant="gradient"
-                                                gradient={{ from: 'blue', to: 'cyan' }}
+                                                gradient={{ from: 'var(--mantine-color-primary-5)', to: 'var(--mantine-color-secondary-5)' }}
                                                 leftSection={<IconCheck size={14} />}
                                             >
                                                 Selected
@@ -171,7 +171,7 @@ const Services: React.FC<ServicesProps> = () => {
                                             fw={500}
                                             size="lg"
                                             ta="center"
-                                            c={selected ? 'blue.9' : 'dark'}
+                                            c={selected ? 'var(--mantine-color-primary-5).9' : 'dark'}
                                         >
                                             {availableService.service}
                                         </Text>
@@ -192,7 +192,7 @@ const Services: React.FC<ServicesProps> = () => {
                         disabled={!selectedServices.length}
                         onClick={handleSubmit}
                         variant="gradient"
-                        gradient={{ from: 'blue', to: 'cyan' }}
+                        gradient={{ from: 'var(--mantine-color-primary-5)', to: 'var(--mantine-color-secondary-5)' }}
                         leftSection={<IconArrowRight size={20} />}
                         px={30}
                     >

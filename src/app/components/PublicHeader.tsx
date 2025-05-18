@@ -67,7 +67,7 @@ const PublicHeader: React.FC<PublicHeaderProps> = ({showSignIn, customActions}) 
                                 color: 'var(--mantine-color-gray-7)',
                                 '&:hover': {
                                     backgroundColor: 'var(--mantine-color-gray-1)',
-                                    color: 'var(--mantine-color-blue-7)',
+                                    color: 'var(--mantine-color-primary-7)',
                                 },
                             },
                         }}
@@ -83,7 +83,7 @@ const PublicHeader: React.FC<PublicHeaderProps> = ({showSignIn, customActions}) 
                                 color: 'var(--mantine-color-gray-7)',
                                 '&:hover': {
                                     backgroundColor: 'var(--mantine-color-gray-1)',
-                                    color: 'var(--mantine-color-blue-7)',
+                                    color: 'var(--mantine-color-primary-7)',
                                 },
                             },
                         }}
@@ -99,7 +99,7 @@ const PublicHeader: React.FC<PublicHeaderProps> = ({showSignIn, customActions}) 
                                 color: 'var(--mantine-color-gray-7)',
                                 '&:hover': {
                                     backgroundColor: 'var(--mantine-color-gray-1)',
-                                    color: 'var(--mantine-color-blue-7)',
+                                    color: 'var(--mantine-color-primary-7)',
                                 },
                             },
                         }}
@@ -132,7 +132,7 @@ const PublicHeader: React.FC<PublicHeaderProps> = ({showSignIn, customActions}) 
                                             key={language}
                                             leftSection={
                                                 <ThemeIcon
-                                                    color="blue"
+                                                    color="var(--mantine-color-primary-5)"
                                                     variant="light"
                                                     size={32}
                                                     radius="xl"

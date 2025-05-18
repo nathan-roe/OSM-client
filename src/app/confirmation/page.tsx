@@ -22,7 +22,7 @@ const OrderConfirmation: React.FC<OrderConfirmationProps> = () => {
             <Container size="xl" py="xl">
                 <Stack gap="xl">
                     <Stack gap="xs">
-                        <Title order={1} size="h2" fw={700} c="blue.9">
+                        <Title order={1} size="h2" fw={700} c="var(--mantine-color-primary-5).9">
                             Review & Confirm
                         </Title>
                         <Text size="lg" c="gray.7" maw={600}>
@@ -39,14 +39,14 @@ const OrderConfirmation: React.FC<OrderConfirmationProps> = () => {
                                         <Group justify="space-between">
                                             <Group gap="xs">
                                                 <IconUser
-                                                    style={{ color: 'var(--mantine-color-blue-6)' }}
+                                                    style={{ color: 'var(--mantine-color-primary-6)' }}
                                                     size={20}
                                                 />
                                                 <Text fw={600} size="lg">Personal Information</Text>
                                             </Group>
                                             <ActionIcon
                                                 variant="light"
-                                                color="blue"
+                                                color="var(--mantine-color-primary-5)"
                                                 radius="xl"
                                             >
                                                 <IconEdit size={18} />
@@ -157,14 +157,14 @@ const OrderConfirmation: React.FC<OrderConfirmationProps> = () => {
                                         <Group justify="space-between">
                                             <Group gap="xs">
                                                 <IconCertificate
-                                                    style={{ color: 'var(--mantine-color-blue-6)' }}
+                                                    style={{ color: 'var(--mantine-color-primary-6)' }}
                                                     size={20}
                                                 />
                                                 <Text fw={600} size="lg">Death Certificate</Text>
                                             </Group>
                                             <ActionIcon
                                                 variant="light"
-                                                color="blue"
+                                                color="var(--mantine-color-primary-5)"
                                                 radius="xl"
                                             >
                                                 <IconEdit size={18} />
@@ -194,14 +194,14 @@ const OrderConfirmation: React.FC<OrderConfirmationProps> = () => {
                                         <Group justify="space-between">
                                             <Group gap="xs">
                                                 <IconIdBadge
-                                                    style={{ color: 'var(--mantine-color-blue-6)' }}
+                                                    style={{ color: 'var(--mantine-color-primary-6)' }}
                                                     size={20}
                                                 />
                                                 <Text fw={600} size="lg">Government ID</Text>
                                             </Group>
                                             <ActionIcon
                                                 variant="light"
-                                                color="blue"
+                                                color="var(--mantine-color-primary-5)"
                                                 radius="xl"
                                             >
                                                 <IconEdit size={18} />
@@ -234,14 +234,14 @@ const OrderConfirmation: React.FC<OrderConfirmationProps> = () => {
                                     <Group justify="space-between" p="xl">
                                         <Group gap="xs">
                                             <IconChecklist
-                                                style={{ color: 'var(--mantine-color-blue-6)' }}
+                                                style={{ color: 'var(--mantine-color-primary-6)' }}
                                                 size={20}
                                             />
                                             <Text fw={600} size="lg">Selected Services</Text>
                                         </Group>
                                         <ActionIcon
                                             variant="light"
-                                            color="blue"
+                                            color="var(--mantine-color-primary-5)"
                                             radius="xl"
                                         >
                                             <IconEdit size={18} />
@@ -258,13 +258,13 @@ const OrderConfirmation: React.FC<OrderConfirmationProps> = () => {
                                                     radius="md"
                                                     withBorder
                                                     style={{
-                                                        background: 'linear-gradient(135deg, var(--mantine-color-blue-0), var(--mantine-color-gray-0))'
+                                                        background: 'linear-gradient(135deg, var(--mantine-color-primary-0))'
                                                     }}
                                                 >
                                                     <Stack gap="xs" align="center">
                                                         <IconPackage
                                                             size={32}
-                                                            style={{ color: 'var(--mantine-color-blue-6)' }}
+                                                            style={{ color: 'var(--mantine-color-primary-6)' }}
                                                         />
                                                         <Text size="sm" fw={500}>Service {idx + 1}</Text>
                                                     </Stack>
@@ -284,7 +284,7 @@ const OrderConfirmation: React.FC<OrderConfirmationProps> = () => {
                     size="lg"
                     radius="xl"
                     variant="gradient"
-                    gradient={{ from: 'blue', to: 'cyan' }}
+                    gradient={{ from: 'var(--mantine-color-primary-5)', to: 'var(--mantine-color-secondary-5)' }}
                     leftSection={<IconShoppingCart size={20} />}
                     styles={{
                         root: {

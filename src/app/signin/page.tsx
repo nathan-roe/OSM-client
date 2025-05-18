@@ -47,7 +47,7 @@ const SignInPage = () => {
                                     style={{
                                         position: 'absolute',
                                         inset: 0,
-                                        background: 'linear-gradient(45deg, var(--mantine-color-blue-6), var(--mantine-color-cyan-5))',
+                                        background: 'linear-gradient(45deg, var(--mantine-color-primary-5))',
                                         opacity: 0.9,
                                     }}
                                 />

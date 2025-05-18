@@ -44,7 +44,7 @@ const SignInAuthentication: React.FC<SignInAuthenticationCardProps> = ({}) => {
                                 <Text size="md">Choose how to sign in to</Text>
                                 <Text size="sm" fw="bold">{emailAddress}</Text>
                                 <Text size="sm">
-                                    <Box c="blue" variant="link" component={Link} href="/signin">
+                                    <Box c="var(--mantine-color-primary-5)" variant="link" component={Link} href="/signin">
                                         Use a different account
                                     </Box>
                                 </Text>
@@ -81,7 +81,7 @@ const SignInAuthentication: React.FC<SignInAuthenticationCardProps> = ({}) => {
                                 <Divider w="100%" label="OR" labelPosition="center" my="md"/>
                                 <Button w="100%" variant="outline">Text a code to (***) ***-**00</Button>
                                 <Text size="sm">
-                                    <Box c="blue" variant="link" component={Link} href="/reset-password">
+                                    <Box c="var(--mantine-color-primary-5)" variant="link" component={Link} href="/reset-password">
                                         Forgot password?
                                     </Box>
                                 </Text>

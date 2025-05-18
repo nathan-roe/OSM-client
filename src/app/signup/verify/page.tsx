@@ -20,8 +20,8 @@ const EmailConfirmationPage = () => {
                     gap="xl"
                     style={{ textAlign: 'center' }}
                 >
-                    <IconMailCheck size={64} color="var(--mantine-color-blue-6)" />
-                    <Title order={1} c="blue.9">
+                    <IconMailCheck size={64} color="var(--mantine-color-primary-6)" />
+                    <Title order={1} c="var(--mantine-color-primary-5).9">
                         Check Your Email
                     </Title>
                     <Text size="lg" c="gray.7">

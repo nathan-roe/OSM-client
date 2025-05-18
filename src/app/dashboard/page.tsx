@@ -70,7 +70,7 @@ const Dashboard = () => {
                                         size={56}
                                         radius="md"
                                         variant="gradient"
-                                        gradient={{ from: 'blue', to: 'cyan' }}
+                                        gradient={{ from: 'var(--mantine-color-primary-5)', to: 'var(--mantine-color-secondary-5)' }}
                                     >
                                         <IconUser size={30} />
                                     </ThemeIcon>
@@ -91,7 +91,7 @@ const Dashboard = () => {
                                             <ThemeIcon
                                                 size="md"
                                                 variant="light"
-                                                color="blue"
+                                                color="var(--mantine-color-primary-5)"
                                                 radius="xl"
                                             >
                                                 <feature.icon size={rem(14)} />
@@ -104,7 +104,7 @@ const Dashboard = () => {
                                 <Button
                                     fullWidth
                                     variant="light"
-                                    color="blue"
+                                    color="var(--mantine-color-primary-6)"
                                     size="lg"
                                     rightSection={<IconArrowRight size={18} />}
                                 >
@@ -135,7 +135,7 @@ const Dashboard = () => {
                                         size={56}
                                         radius="md"
                                         variant="gradient"
-                                        gradient={{ from: 'cyan', to: 'blue' }}
+                                        gradient={{ from: 'var(--mantine-color-secondary-5)', to: 'var(--mantine-color-primary-5)' }}
                                     >
                                         <IconUserPlus size={30} />
                                     </ThemeIcon>
@@ -156,7 +156,7 @@ const Dashboard = () => {
                                             <ThemeIcon
                                                 size="md"
                                                 variant="light"
-                                                color="cyan"
+                                                color="var(--mantine-color-secondary-5)"
                                                 radius="xl"
                                             >
                                                 <feature.icon size={rem(14)} />
@@ -169,7 +169,7 @@ const Dashboard = () => {
                                 <Button
                                     fullWidth
                                     variant="light"
-                                    color="cyan"
+                                    color="var(--mantine-color-secondary-5)"
                                     size="lg"
                                     rightSection={<IconArrowRight size={18} />}
                                 >
@@ -183,7 +183,7 @@ const Dashboard = () => {
                         mt="xl"
                         p="xl"
                         style={{
-                            background: 'linear-gradient(135deg, var(--mantine-color-blue-0), var(--mantine-color-cyan-0))',
+                            background: 'linear-gradient(135deg, var(--mantine-color-secondary-0), var(--mantine-color-secondary-0))',
                             borderRadius: 'var(--mantine-radius-lg)',
                         }}
                     >
