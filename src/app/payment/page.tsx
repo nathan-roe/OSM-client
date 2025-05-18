@@ -1,28 +1,27 @@
-// PricingPage.tsx
 "use client";
 import React from 'react';
+import AuthenticatedPage from "@/app/dashboard/AuthenticatedPage";
 import {
     Container,
     Title,
     Text,
     Stack,
     Paper,
+    Button,
     Group,
     List,
     ThemeIcon,
     Badge,
-    rem,
-    Button
+    rem
 } from '@mantine/core';
+import { useRouter } from "next/navigation";
 import {
     IconCheck,
     IconX,
     IconCrown,
     IconUserPlus,
-    IconRefresh,
-    IconExternalLink
+    IconRefresh
 } from '@tabler/icons-react';
-import PublicPage from "@/app/components/PublicPage";
 
 interface PricingFeature {
     text: string;
@@ -37,10 +36,12 @@ interface PricingTier {
     features: PricingFeature[];
     icon: React.ReactNode;
     highlighted?: boolean;
-    ctaLink: string;
 }
 
-export default function PublicPricingPage() {
+const PricingPage: React.FC = () => {
+    const router = useRouter();
+    const [selectedTier, setSelectedTier] = React.useState<string | null>(null);
+
     const pricingTiers: PricingTier[] = [
         {
             title: "Basic",
@@ -48,7 +49,6 @@ export default function PublicPricingPage() {
             price: "Free",
             period: "forever",
             icon: <IconUserPlus size={24} />,
-            ctaLink: "/signup/basic",
             features: [
                 { text: "Basic account management", included: true },
                 { text: "Single user access", included: true },
@@ -65,7 +65,6 @@ export default function PublicPricingPage() {
             period: "one-time",
             icon: <IconCrown size={24} />,
             highlighted: true,
-            ctaLink: "/signup/premium",
             features: [
                 { text: "Basic account management", included: true },
                 { text: "Multiple user access", included: true },
@@ -81,7 +80,6 @@ export default function PublicPricingPage() {
             price: "$49",
             period: "per month",
             icon: <IconRefresh size={24} />,
-            ctaLink: "/contact-sales",
             features: [
                 { text: "Basic account management", included: true },
                 { text: "Unlimited user access", included: true },
@@ -93,16 +91,26 @@ export default function PublicPricingPage() {
         }
     ];
 
+    const handlePlanSelection = (tierTitle: string) => {
+        setSelectedTier(tierTitle);
+    };
+
+    const handleContinue = () => {
+        // Mock navigation to the next page
+        console.log(`Selected plan: ${selectedTier}`);
+        router.push('/user-information');
+    };
+
     return (
-        <PublicPage>
+        <AuthenticatedPage>
             <Container size="xl" py="xl">
                 <Stack gap="xl">
                     <Stack gap="xs" ta="center">
                         <Title order={1} size="h2" fw={700} c="blue.9">
-                            Transparent Pricing
+                            Choose Your Plan
                         </Title>
                         <Text size="lg" c="gray.7" maw={600} mx="auto">
-                            Choose the perfect plan for your needs. No hidden fees.
+                            Select the plan that best fits your needs. All plans include our core features.
                         </Text>
                     </Stack>
 
@@ -122,6 +130,7 @@ export default function PublicPricingPage() {
                                     maxWidth: rem(400),
                                     position: 'relative',
                                     transform: tier.highlighted ? 'scale(1.05)' : 'scale(1)',
+                                    transition: 'transform 0.2s ease'
                                 }}
                             >
                                 {tier.highlighted && (
@@ -164,7 +173,21 @@ export default function PublicPricingPage() {
                                         </Text>
                                     </Group>
 
-                                    <List spacing="sm" size="sm" center>
+                                    <List
+                                        spacing="sm"
+                                        size="sm"
+                                        center
+                                        icon={
+                                            <ThemeIcon
+                                                color="blue"
+                                                size={22}
+                                                radius="xl"
+                                                variant="light"
+                                            >
+                                                <IconCheck size={14} />
+                                            </ThemeIcon>
+                                        }
+                                    >
                                         {tier.features.map((feature, index) => (
                                             <List.Item
                                                 key={index}
@@ -201,27 +224,43 @@ export default function PublicPricingPage() {
                                     </List>
 
                                     <Button
-                                        component="a"
-                                        href={tier.ctaLink}
-                                        variant={tier.highlighted ? "gradient" : "light"}
+                                        variant={selectedTier === tier.title ? "gradient" : "light"}
                                         gradient={{ from: 'blue', to: 'cyan' }}
                                         size="md"
                                         radius="md"
                                         fullWidth
-                                        rightSection={<IconExternalLink size={16} />}
+                                        onClick={() => handlePlanSelection(tier.title)}
                                     >
-                                        {tier.title === "Enterprise" ? "Contact Sales" : "Get Started"}
+                                        {selectedTier === tier.title ? 'Selected' : 'Select Plan'}
                                     </Button>
                                 </Stack>
                             </Paper>
                         ))}
                     </Group>
 
-                    <Text c="dimmed" size="sm" ta="center" mt="xl">
-                        All prices are in USD. Need help choosing? Contact our sales team.
-                    </Text>
+                    {selectedTier && (
+                        <Group justify="center" pt="xl">
+                            <Button
+                                size="lg"
+                                radius="xl"
+                                variant="gradient"
+                                gradient={{ from: 'blue', to: 'cyan' }}
+                                onClick={handleContinue}
+                                styles={{
+                                    root: {
+                                        padding: '0 45px',
+                                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
+                                    }
+                                }}
+                            >
+                                Continue with {selectedTier} Plan
+                            </Button>
+                        </Group>
+                    )}
                 </Stack>
             </Container>
-        </PublicPage>
+        </AuthenticatedPage>
     );
-}
+};
+
+export default PricingPage;

@@ -7,7 +7,8 @@ import {useRouter} from "next/navigation";
 import AuthenticatedNavBar from "@/app/dashboard/AuthenticatedNavBar";
 import {UserCreationProgressProvider} from "@/context/UserCreationProgressContext";
 import {PageLoadIndicatorProvider, PageOverlay, usePageLoadIndicator} from "@/context/LoadingContext";
-import Footer from "@/app/Footer";
+import Footer from "@/app/components/Footer";
+import {Background} from "@/app/components/Background";
 
 interface AuthenticatedPageProps {
     children?: React.ReactNode | React.ReactNode[];

@@ -69,7 +69,7 @@ const AuthenticatedHeader: React.FC<AuthenticatedHeaderProps> = () => {
                                     Digital Remains
                                 </Text>
                                 <Text size="xs" c="dimmed" style={{ letterSpacing: '0.5px' }}>
-                                    SERVICE MANAGEMENT
+                                    DIGITAL LEGACY MANAGEMENT
                                 </Text>
                             </Stack>
                         </Group>

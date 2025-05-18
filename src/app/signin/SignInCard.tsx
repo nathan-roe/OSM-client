@@ -24,7 +24,7 @@ const SignInCard: React.FC<SignInCardProps> = ({autoFocus}) => {
     }, [emailAddress, rememberMe]);
 
     return (
-        <Card w="100%" radius="md" withBorder px={50}>
+        <Card w="100%" radius="md" withBorder p={50}>
             <Card.Section pt={30} pb={10} withBorder>
                 <Stack align="center">
                     <Title size={25} c="primary">Digital Remains</Title>
