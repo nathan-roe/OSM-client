@@ -18,11 +18,10 @@ import {
     useMantineTheme,
     TextInput,
     Textarea,
-    Image
+    Image, Paper
 } from "@mantine/core";
 import {
     IconCheck,
-    IconDirectionSign,
     IconCookie,
     IconPointer,
     IconShieldCheck,
@@ -48,6 +47,7 @@ import {useMediaQuery} from "@mantine/hooks";
 import Wave from "./components/Wave";
 import React from "react";
 import {useRouter} from "next/navigation";
+import BackgroundDots from "@/app/components/BackgroundDots";
 
 
 const secondaryInfoCards = [
@@ -71,7 +71,7 @@ const secondaryInfoCards = [
 const LandingPage = () => {
     const mobile = useMediaQuery('(max-width: 62em)')
     return (
-        <PublicPage>
+        <PublicPage customBackground={<BackgroundDots blur />}>
             {mobile ? <LandingMobile/> : <LandingDesktop/>}
         </PublicPage>
     );
@@ -242,32 +242,101 @@ const LandingDesktop = () => {
                     width: '100%',
                 }}/>
             </Stack>
-            <Group justify="center" mih={750} mt={-50} style={{
-                zIndex: 0,
-                backgroundImage: `linear-gradient(${theme.colors.primary[6]}, ${theme.colors.primary[9]})`
-            }}>
-                <Stack justify="space-evenly" align="center" h="100%" w="50%" miw={500} py={100}>
-                    <div>
-                        <Title c="primary.1" ta="center" size={50}>
-                            Account management&nbsp;
-                            <Text component="span" inherit variant="gradient" gradient={{
-                                from: 'secondary.6',
-                                to: 'secondary.9'
-                            }}>all in one place.</Text>
-                        </Title>
-                        <Title size={30} ta="center" c="text.9" fw="550">
-                            Managing the online presence of loved ones has never been easier
+            <Box
+                pos="relative"
+                mih={750}
+                mt={-50}
+                style={{
+                    zIndex: 0,
+                    overflow: 'hidden',
+                    background: 'linear-gradient(135deg, var(--mantine-color-primary-6) 0%, var(--mantine-color-primary-9) 100%)',
+                }}
+            >
+                <Container size="xl" h="100%">
+                    <Stack
+                        justify="center"
+                        align="center"
+                        h="100%"
+                        py={100}
+                        pos="relative"
+                        style={{ backdropFilter: 'blur(10px)' }}
+                    >
+                        <Stack gap="xl" maw={800} style={{ textAlign: 'center' }}>
+                            <Box>
+                                <Title
+                                    c="primary.0"
+                                    size={65}
+                                    fw={900}
+                                    style={{
+                                        lineHeight: 1.1,
+                                        letterSpacing: '-1px',
+                                        textShadow: '0 2px 10px rgba(0, 0, 0, 0.2)',
+                                    }}
+                                >
+                                    Account management<br/>
+                                    <Text
+                                        component="span"
+                                        inherit
+                                        variant="gradient"
+                                        gradient={{ from: 'secondary.6', to: 'secondary.9' }}
+                                        style={{
+                                            backgroundClip: 'text',
+                                            WebkitBackgroundClip: 'text',
+                                            textShadow: 'none',
+                                        }}
+                                    >
+                                        all in one place.
+                                    </Text>
+                                </Title>
 
-                        </Title>
+                                <Title
+                                    order={2}
+                                    size={30}
+                                    c="gray.0"
+                                    fw={500}
+                                    mt="xl"
+                                    style={{
+                                        lineHeight: 1.4,
+                                        textShadow: '0 1px 5px rgba(0, 0, 0, 0.15)',
+                                    }}
+                                >
+                                    Managing the online presence of loved ones has never been easier
+                                </Title>
+                            </Box>
 
-                    </div>
-                    <Button w="fit-content" bg="white" variant="outline" size="xl" px={100} onClick={() => {
-                        router.push("/signup")
-                    }}>
-                        <Title size={25} c="primary.7">Get Started</Title>
-                    </Button>
-                </Stack>
-            </Group>
+                            <Button
+                                variant="gradient"
+                                gradient={{ from: 'white', to: 'gray.2' }}
+                                size="xl"
+                                radius="xl"
+                                px={50}
+                                mt={40}
+                                onClick={() => router.push("/signup")}
+                                styles={{
+                                    root: {
+                                        border: '2px solid rgba(255, 255, 255, 0.2)',
+                                        transition: 'all 0.3s ease',
+                                        '&:hover': {
+                                            transform: 'translateY(-2px)',
+                                            boxShadow: '0 8px 20px rgba(0, 0, 0, 0.2)',
+                                        },
+                                    },
+                                    inner: {
+                                        fontSize: '2rem',
+                                        fontWeight: 600,
+                                        textTransform: "capitalize",
+                                        background: 'linear-gradient(135deg, var(--mantine-color-primary-7), var(--mantine-color-primary-8))',
+                                        WebkitBackgroundClip: 'text',
+                                        WebkitTextFillColor: 'transparent',
+                                    },
+                                }}
+                            >
+                                Get Started
+                            </Button>
+                        </Stack>
+                    </Stack>
+                </Container>
+            </Box>
             <Stack justify="center" gap={0} style={{zIndex: 1}} mt={-100}>
                 <Wave fill={theme.colors.primary[1]} position="up" style={{
                     width: '100%',
@@ -351,66 +420,186 @@ const LandingDesktop = () => {
                     </SimpleGrid>
                 </Group>
             </Stack>
-            <Stack w="100%" align="center" mt={50}>
-                <Title size={30} ta="center">
-                    Get in touch. Our team is ready to answer your questions
-                </Title>
-                <form style={{width: '100%', height: '100%'}} onSubmit={() => {
-                }}>
-                    <SimpleGrid cols={{base: 2}} w="100%" h="100%" pb={50}>
-                        <Stack h="100%" w="100%">
-                            <Stack w="100%" h={650} px={50} justify="space-between">
-                                <div>
-                                    <Text>Your name</Text>
-                                    <TextInput placeholder="Jane Smith" size="lg" w="100%"/>
-                                </div>
-                                <div>
-                                    <Text>Your email</Text>
-                                    <TextInput placeholder="my.email@gmail.com" size="lg" w="100%"/>
-                                </div>
-                                <div>
-                                    <Text>Your message</Text>
-                                    <Textarea placeholder="Hi, I'd like to know more about..." size="lg" w="100%"
-                                              minRows={15} autosize maxRows={15} />
-                                </div>
-                            </Stack>
-                            <Group justify="flex-end" w="100%" px={50}>
-                                <Button type="submit" radius="xl" size="lg" w={200}>Send</Button>
-                            </Group>
+            <Box
+                py={80}
+                px="md"
+            >
+                <Container size="xl">
+                    <Stack gap="xl">
+                        <Stack gap="xs" ta="center">
+                            <Title
+                                order={1}
+                                size={45}
+                                fw={800}
+                                style={{ letterSpacing: '-1px' }}
+                            >
+                                Get in Touch
+                            </Title>
+                            <Text size="xl" c="dimmed" maw={600} mx="auto" style={{ lineHeight: 1.6 }}>
+                                Our team is ready to answer your questions and help you get started
+                            </Text>
                         </Stack>
-                        <Container size="md" h={650 - 17} mt={17}>
-                            <Stack w="100%" h="100%" px={50} justify="space-between">
-                                <Text c="dimmed" size="xl" mb={19}>
-                                    We're always looking for ways to expand and improve our services. If you have
-                                    specific requests, we'd be happy to update our platform to support them
-                                </Text>
-                                <div style={{
-                                    flex: 1,
-                                    overflow: 'hidden',
-                                    position: 'relative'
-                                }}>
-                                    <Image
-                                        src="./contact-us.jpeg"
-                                        alt="Custom Support"
-                                        h="100%"
-                                        width="auto"
-                                        radius="md"
-                                    />
-                                    <div style={{
-                                        position: 'absolute',
-                                        backgroundColor: theme.colors.primary[3],
-                                        top: 0,
-                                        left: 0,
-                                        width: '100%',
-                                        height: '100%',
-                                        opacity: '25%'
-                                    }}/>
-                                </div>
-                            </Stack>
-                        </Container>
-                    </SimpleGrid>
-                </form>
-            </Stack>
+
+                        <form style={{ width: '100%' }} onSubmit={(e) => {
+                            e.preventDefault();
+                            // Handle form submission
+                        }}>
+                            <SimpleGrid cols={{ base: 1, md: 2 }} spacing="xl">
+                                <Paper
+                                    shadow="md"
+                                    radius="lg"
+                                    p="xl"
+                                    withBorder
+                                    style={{
+                                        background: 'white',
+                                        borderColor: 'var(--mantine-color-primary-2)',
+                                    }}
+                                >
+                                    <Stack gap="xl">
+                                        <Stack gap="md">
+                                            <TextInput
+                                                label="Your name"
+                                                placeholder="Jane Smith"
+                                                size="md"
+                                                radius="md"
+                                                styles={{
+                                                    label: {
+                                                        fontSize: '1rem',
+                                                        marginBottom: '0.5rem',
+                                                    },
+                                                    input: {
+                                                        '&:focus': {
+                                                            borderColor: 'var(--mantine-color-primary-5)',
+                                                            boxShadow: '0 0 0 3px var(--mantine-color-primary-1)',
+                                                        },
+                                                    },
+                                                }}
+                                            />
+
+                                            <TextInput
+                                                label="Your email"
+                                                placeholder="my.email@gmail.com"
+                                                size="md"
+                                                radius="md"
+                                                styles={{
+                                                    label: {
+                                                        fontSize: '1rem',
+                                                        marginBottom: '0.5rem',
+                                                    },
+                                                    input: {
+                                                        '&:focus': {
+                                                            borderColor: 'var(--mantine-color-primary-5)',
+                                                            boxShadow: '0 0 0 3px var(--mantine-color-primary-1)',
+                                                        },
+                                                    },
+                                                }}
+                                            />
+
+                                            <Textarea
+                                                label="Your message"
+                                                placeholder="Hi, I'd like to know more about..."
+                                                size="md"
+                                                radius="md"
+                                                minRows={12}
+                                                maxRows={12}
+                                                autosize
+                                                styles={{
+                                                    label: {
+                                                        fontSize: '1rem',
+                                                        marginBottom: '0.5rem',
+                                                    },
+                                                    input: {
+                                                        '&:focus': {
+                                                            borderColor: 'var(--mantine-color-primary-5)',
+                                                            boxShadow: '0 0 0 3px var(--mantine-color-primary-1)',
+                                                        },
+                                                    },
+                                                }}
+                                            />
+                                        </Stack>
+
+                                        <Button
+                                            type="submit"
+                                            size="lg"
+                                            radius="xl"
+                                            variant="gradient"
+                                            gradient={{ from: 'var(--mantine-color-primary-5)', to: 'var(--mantine-color-primary-6)' }}
+                                            fullWidth
+                                            styles={{
+                                                root: {
+                                                    height: 50,
+                                                    transition: 'transform 0.2s ease',
+                                                    '&:hover': {
+                                                        transform: 'translateY(-2px)',
+                                                    },
+                                                    '&:active': {
+                                                        transform: 'translateY(0)',
+                                                    },
+                                                },
+                                            }}
+                                        >
+                                            Send Message
+                                        </Button>
+                                    </Stack>
+                                </Paper>
+
+                                <Stack gap="xl">
+                                    <Paper
+                                        p="xl"
+                                        radius="lg"
+                                        style={{
+                                            background: 'linear-gradient(135deg, var(--mantine-color-primary-7) 0%, var(--mantine-color-primary-5) 100%)',
+                                            color: 'white',
+                                        }}
+                                    >
+                                        <Stack gap="md">
+                                            <Text size="xl" fw={500} style={{ lineHeight: 1.6 }}>
+                                                We're always looking for ways to expand and improve our services. If you have specific requests,
+                                                we'd be happy to update our platform to support them.
+                                            </Text>
+                                            <Text size="lg" style={{ opacity: 0.9 }}>
+                                                Your feedback helps us grow and serve you better.
+                                            </Text>
+                                        </Stack>
+                                    </Paper>
+
+                                    <Paper
+                                        shadow="md"
+                                        radius="lg"
+                                        style={{
+                                            flex: 1,
+                                            overflow: 'hidden',
+                                            position: 'relative',
+                                            aspectRatio: '16/9',
+                                        }}
+                                    >
+                                        <Image
+                                            src="./contact-us.jpeg"
+                                            alt="Customer Support"
+                                            style={{
+                                                width: '100%',
+                                                height: '100%',
+                                                objectFit: 'cover',
+                                            }}
+                                        />
+                                        <Box
+                                            style={{
+                                                position: 'absolute',
+                                                backgroundColor: theme.colors.primary[3],
+                                                top: 0,
+                                                left: 0,
+                                                width: '100%',
+                                                height: '100%',
+                                                opacity: '15%'
+                                            }}
+                                        />
+                                    </Paper>
+                                </Stack>
+                            </SimpleGrid>
+                        </form>
+                    </Stack>
+                </Container>
+            </Box>
         </Stack>
     );
 }

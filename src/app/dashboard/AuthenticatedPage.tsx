@@ -7,7 +7,8 @@ import {useRouter} from "next/navigation";
 import AuthenticatedNavBar from "@/app/dashboard/AuthenticatedNavBar";
 import {UserCreationProgressProvider} from "@/context/UserCreationProgressContext";
 import {PageLoadIndicatorProvider, PageOverlay, usePageLoadIndicator} from "@/context/LoadingContext";
-import Footer from "@/app/Footer";
+import Footer from "@/app/components/Footer";
+import {Background} from "@/app/components/Background";
 
 interface AuthenticatedPageProps {
     children?: React.ReactNode | React.ReactNode[];
@@ -36,18 +37,19 @@ const AuthenticatedShell: React.FC<AuthenticatedPageProps> = ({children}) => {
     const {user} = useAuth();
     const {overlay} = usePageLoadIndicator();
 
-    console.log("user auth: ", user)
-
     return (
         <AppShell
-            header={{ height: '50px' }}
+            header={{ height: 60 }}
             navbar={{
                 breakpoint: "sm",
-                width: {sm: 0, md: 200},
+                width: {sm: 0, md: 250},
                 collapsed: {
                     mobile: true,
                     desktop: false
                 }
+            }}
+            footer={{
+                height: 55
             }}
             styles={{
                 main: {
@@ -65,13 +67,15 @@ const AuthenticatedShell: React.FC<AuthenticatedPageProps> = ({children}) => {
             <AppShell.Main>
                 {user === UserAuthenticationState.INITIALIZING
                     ? <PageOverlay /> : (
-                    <Stack h="calc(100vh - 50px)" w="100vw" pos="relative" align="center" justify="space-between">
+                    <Stack h="calc(100vh - 115px)" w="100vw" pos="relative" align="center" justify="space-between">
                         {overlay}
                         {children}
-                        <Footer />
                     </Stack>
                 )}
             </AppShell.Main>
+            <AppShell.Footer>
+                <Footer />
+            </AppShell.Footer>
         </AppShell>
     );
 }

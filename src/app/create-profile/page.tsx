@@ -1,13 +1,17 @@
 "use client";
 import React from 'react';
 import AuthenticatedPage from "@/app/dashboard/AuthenticatedPage";
-import {Grid, Card, Divider, Text, TextInput, Title, Stack, Group, Button, Box, useMatches} from '@mantine/core';
+import { DateInput } from '@mantine/dates';
+import {Grid, Container, Paper, Text, TextInput, Title, Stack, Button, Box, useMatches, Group, Badge, Tabs, Select, Checkbox, Divider, ThemeIcon, List, Alert} from '@mantine/core';
 import {useRouter} from "next/navigation";
 import {validateEmailAddress} from "@/common/validationUtils";
 import {useCreateDeceasedUser} from "@/query/deceasedUserManagement/useCreateDeceasedUser";
 import {useCreationProgress} from "@/context/UserCreationProgressContext";
 import {UserCreationProgress} from "@/query/deceasedUserManagement/useUserCreationProgress";
 import {usePageLoadIndicator} from "@/context/LoadingContext";
+import {IconAt, IconBuilding,
+    IconCheck, IconFlag, IconHome, IconInfoCircle, IconMapPin, IconPhone, IconUser, IconUserCheck,
+    IconUserShield} from "@tabler/icons-react";
 
 
 interface UserInfo {
@@ -17,6 +21,17 @@ interface UserInfo {
     emailAddress: string;
     phoneNumber: string;
     zipCode: string;
+    dateOfBirth: string;
+    relationship: string;
+    altPhoneNumber: string;
+    contactPreference: string;
+    receiveUpdates: boolean;
+    streetAddress: string;
+    apartmentNumber: string;
+    city: string;
+    country: string;
+    gender: string;
+    state: string;
 }
 
 interface FormValidation {
@@ -35,6 +50,17 @@ const _initialUserInfo: UserInfo = {
     emailAddress: "",
     phoneNumber: "",
     zipCode: "",
+    dateOfBirth: "",
+    relationship: "",
+    altPhoneNumber: "",
+    contactPreference: "",
+    receiveUpdates: true,
+    streetAddress: "",
+    apartmentNumber: "",
+    city: "",
+    country: "",
+    gender: "",
+    state: "",
 }
 
 const validateUserInfo = (
@@ -122,136 +148,333 @@ const CreateProfile: React.FC<CreateProfileProps> = () => {
 
     return (
         <AuthenticatedPage>
-            <Stack pl={{sm: 0, md: 200}} pt={{sm: 20, md: 50}} h="calc(100vh - 200px)" w="100vw" justify="center" align="center">
-                <form style={{
-                    width: '100%',
-                    height: '100%',
-                }} onSubmit={e => {
+            <Container size="xl" py="xl">
+                <form onSubmit={e => {
                     e.preventDefault();
                     setLoading(true);
                     handleSubmit();
                 }}>
-                    <Grid>
-                        <Grid.Col span={6} visibleFrom="md">
-                            <Stack w="100%" align="flex-end">
-                                <Title size={25}>Lorem Ipsum lorem ipsum</Title>
-                                <Text size="md">
-                                    Lorem Ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-                                </Text>
-                                <Box h={400} w='30vw' bg="lightgrey" style={{
-                                    borderRadius: 5
-                                }}/>
-                            </Stack>
-                        </Grid.Col>
-                        {/*<Divider visibleFrom="md" orientation="vertical" w='10px'/>*/}
-                        <Grid.Col span={{sm: 12, md: 6}}>
-                            <Stack align={formAlignment}>
-                                <Card
-                                    shadow="lg"
-                                    padding="xl"
-                                    radius="md"
-                                    withBorder
-                                    maw="90vw"
-                                    w={500}
-                                >
-                                    <Stack w="100%" pos="relative">
-                                        <Text component="label" mb={-15} size="sm" htmlFor="first-name-input">
-                                            First Name
+                    <Grid gutter="xl">
+                        <Grid.Col span={{ base: 12, md: 6 }} order={{ base: 2, md: 1 }}>
+                            <Paper shadow="md" radius="lg" p="xl" withBorder>
+                                <Stack>
+                                            <Group justify="space-between" align="center">
+                                                <Title order={2} c="var(--mantine-color-primary-5).9">Create Profile</Title>
+                                                <Badge size="lg" radius="md" color="var(--mantine-color-primary-5)">
+                                                    Personal Details
+                                                </Badge>
+                                            </Group>
+                                            
+                                            <Tabs defaultValue="personal" variant="outline" radius="md">
+                                                <Tabs.List>
+                                                    <Tabs.Tab 
+                                                        value="personal" 
+                                                        leftSection={<IconUser size={16} />}
+                                                    >
+                                                        Personal
+                                                    </Tabs.Tab>
+                                                    <Tabs.Tab 
+                                                        value="contact" 
+                                                        leftSection={<IconPhone size={16} />}
+                                                    >
+                                                        Contact
+                                                    </Tabs.Tab>
+                                                    <Tabs.Tab 
+                                                        value="address" 
+                                                        leftSection={<IconMapPin size={16} />}
+                                                    >
+                                                        Address
+                                                    </Tabs.Tab>
+                                                </Tabs.List>
+        
+                                                <Tabs.Panel value="personal" pt="md">
+                                                    <Stack>
+                                                        <Grid gutter="md">
+                                                            <Grid.Col span={{ base: 12, sm: 6 }}>
+                                                                <TextInput
+                                                                    label="First Name"
+                                                                    placeholder="Enter your first name"
+                                                                    leftSection={<IconUser size={16} />}
+                                                                    error={formValidationErrors.firstName && "First name is required"}
+                                                                    onChange={e => handleFormChange({ firstName: e.target.value })}
+                                                                    onBlur={() => handleFormValidation({ firstName: userInfo.firstName })}
+                                                                    size="md"
+                                                                    required
+                                                                />
+                                                            </Grid.Col>
+                                                            <Grid.Col span={{ base: 12, sm: 6 }}>
+                                                                <TextInput
+                                                                    label="Middle Name"
+                                                                    placeholder="Enter your middle name"
+                                                                    leftSection={<IconUser size={16} />}
+                                                                    error={formValidationErrors.middleName && "Middle name is required"}
+                                                                    onChange={e => handleFormChange({ middleName: e.target.value })}
+                                                                    onBlur={() => handleFormValidation({ middleName: userInfo.middleName })}
+                                                                    size="md"
+                                                                />
+                                                            </Grid.Col>
+                                                        </Grid>
+        
+                                                        <TextInput
+                                                            label="Last Name"
+                                                            placeholder="Enter your last name"
+                                                            leftSection={<IconUser size={16} />}
+                                                            error={formValidationErrors.lastName && "Last name is required"}
+                                                            onChange={e => handleFormChange({ lastName: e.target.value })}
+                                                            onBlur={() => handleFormValidation({ lastName: userInfo.lastName })}
+                                                            size="md"
+                                                            required
+                                                        />
+        
+                                                        <Grid gutter="md">
+                                                            <Grid.Col span={{ base: 12, sm: 6 }}>
+                                                                <Select
+                                                                    label="Gender"
+                                                                    placeholder="Select gender"
+                                                                    data={[
+                                                                        { value: 'male', label: 'Male' },
+                                                                        { value: 'female', label: 'Female' },
+                                                                        { value: 'other', label: 'Other' },
+                                                                        { value: 'prefer-not-to-say', label: 'Prefer not to say' }
+                                                                    ]}
+                                                                    onChange={(value) => handleFormChange({gender: value || undefined })}
+                                                                    size="md"
+                                                                />
+                                                            </Grid.Col>
+                                                            <Grid.Col span={{ base: 12, sm: 6 }}>
+                                                                <DateInput
+                                                                    label="Date of Birth"
+                                                                    placeholder="MM/DD/YYYY"
+                                                                    valueFormat="MM/DD/YYYY"
+                                                                    onChange={(date) => handleFormChange({ dateOfBirth: date || undefined })}
+                                                                    size="md"
+                                                                />
+                                                            </Grid.Col>
+                                                        </Grid>
+        
+                                                        <Select
+                                                            label="Relationship to the Deceased"
+                                                            placeholder="Select relationship"
+                                                            data={[
+                                                                { value: 'spouse', label: 'Spouse' },
+                                                                { value: 'child', label: 'Child' },
+                                                                { value: 'parent', label: 'Parent' },
+                                                                { value: 'sibling', label: 'Sibling' },
+                                                                { value: 'grandchild', label: 'Grandchild' },
+                                                                { value: 'grandparent', label: 'Grandparent' },
+                                                                { value: 'friend', label: 'Friend' },
+                                                                { value: 'other', label: 'Other' }
+                                                            ]}
+                                                            onChange={(value) => handleFormChange({ relationship: value || undefined })}
+                                                            size="md"
+                                                        />
+                                                    </Stack>
+                                                </Tabs.Panel>
+        
+                                                <Tabs.Panel value="contact" pt="md">
+                                                    <Stack>
+                                                        <TextInput
+                                                            label="Email Address"
+                                                            placeholder="your.email@example.com"
+                                                            leftSection={<IconAt size={16} />}
+                                                            error={formValidationErrors.emailAddress && "Please enter a valid email address"}
+                                                            onChange={e => handleFormChange({ emailAddress: e.target.value })}
+                                                            onBlur={() => handleFormValidation({ emailAddress: userInfo.emailAddress })}
+                                                            size="md"
+                                                            required
+                                                        />
+        
+                                                        <TextInput
+                                                            label="Phone Number"
+                                                            placeholder="Enter your phone number"
+                                                            leftSection={<IconPhone size={16} />}
+                                                            error={formValidationErrors.phoneNumber && "Phone number must be at least 6 digits"}
+                                                            onChange={e => handleFormChange({ phoneNumber: e.target.value })}
+                                                            onBlur={() => handleFormValidation({ phoneNumber: userInfo.phoneNumber })}
+                                                            size="md"
+                                                            required
+                                                        />
+        
+                                                        <TextInput
+                                                            label="Alternative Phone Number"
+                                                            placeholder="Enter alternative phone number"
+                                                            leftSection={<IconPhone size={16} />}
+                                                            onChange={e => handleFormChange({ altPhoneNumber: e.target.value })}
+                                                            size="md"
+                                                        />
+        
+                                                        <Select
+                                                            label="Preferred Contact Method"
+                                                            placeholder="Select preference"
+                                                            data={[
+                                                                { value: 'email', label: 'Email' },
+                                                                { value: 'phone', label: 'Phone' },
+                                                                { value: 'text', label: 'Text Message' }
+                                                            ]}
+                                                            onChange={(value) => handleFormChange({ contactPreference: value || undefined })}
+                                                            size="md"
+                                                        />
+        
+                                                        <Checkbox
+                                                            label="I would like to receive updates about services and important notifications"
+                                                            onChange={(e) => handleFormChange({ receiveUpdates: e.currentTarget.checked })}
+                                                            mt="xs"
+                                                        />
+                                                    </Stack>
+                                                </Tabs.Panel>
+        
+                                                <Tabs.Panel value="address" pt="md">
+                                                    <Stack>
+                                                        <TextInput
+                                                            label="Street Address"
+                                                            placeholder="Enter your street address"
+                                                            leftSection={<IconHome size={16} />}
+                                                            onChange={e => handleFormChange({ streetAddress: e.target.value })}
+                                                            size="md"
+                                                        />
+        
+                                                        <TextInput
+                                                            label="Apartment/Unit Number"
+                                                            placeholder="Enter apartment or unit number (if applicable)"
+                                                            leftSection={<IconBuilding size={16} />}
+                                                            onChange={e => handleFormChange({ apartmentNumber: e.target.value })}
+                                                            size="md"
+                                                        />
+        
+                                                        <Grid gutter="md">
+                                                            <Grid.Col span={{ base: 12, sm: 6 }}>
+                                                                <TextInput
+                                                                    label="City"
+                                                                    placeholder="Enter your city"
+                                                                    leftSection={<IconMapPin size={16} />}
+                                                                    onChange={e => handleFormChange({ city: e.target.value })}
+                                                                    size="md"
+                                                                />
+                                                            </Grid.Col>
+                                                            <Grid.Col span={{ base: 12, sm: 6 }}>
+                                                                <TextInput
+                                                                    label="State/Province"
+                                                                    placeholder="Enter your state"
+                                                                    leftSection={<IconFlag size={16} />}
+                                                                    onChange={e => handleFormChange({ state: e.target.value })}
+                                                                    size="md"
+                                                                />
+                                                            </Grid.Col>
+                                                        </Grid>
+        
+                                                        <Grid gutter="md">
+                                                            <Grid.Col span={{ base: 12, sm: 6 }}>
+                                                                <TextInput
+                                                                    label="Zip Code"
+                                                                    placeholder="Enter your zip code"
+                                                                    leftSection={<IconMapPin size={16} />}
+                                                                    error={formValidationErrors.zipCode && "Zip code must be at least 5 characters"}
+                                                                    onChange={e => handleFormChange({ zipCode: e.target.value })}
+                                                                    onBlur={() => handleFormValidation({ zipCode: userInfo.zipCode })}
+                                                                    size="md"
+                                                                    required
+                                                                />
+                                                            </Grid.Col>
+                                                            <Grid.Col span={{ base: 12, sm: 6 }}>
+                                                                <Select
+                                                                    label="Country"
+                                                                    placeholder="Select country"
+                                                                    data={[
+                                                                        { value: 'US', label: 'United States' },
+                                                                        { value: 'CA', label: 'Canada' },
+                                                                        { value: 'UK', label: 'United Kingdom' },
+                                                                        { value: 'AU', label: 'Australia' },
+                                                                        { value: 'OTHER', label: 'Other' }
+                                                                    ]}
+                                                                    defaultValue="US"
+                                                                    onChange={(value) => handleFormChange({ country: value || undefined })}
+                                                                    size="md"
+                                                                />
+                                                            </Grid.Col>
+                                                        </Grid>
+                                                    </Stack>
+                                                </Tabs.Panel>
+                                            </Tabs>
+        
+                                            <Divider my="sm" />
+        
+                                            <Alert color="blue" radius="md">
+                                                <Group>
+                                                    <ThemeIcon color="blue" size="lg" radius="xl" variant="light">
+                                                        <IconInfoCircle size={18} />
+                                                    </ThemeIcon>
+                                                    <Text size="sm" fw={500}>Your information helps us provide personalized service throughout this process.</Text>
+                                                </Group>
+                                            </Alert>
+        
+                                            <Button
+                                                size="lg"
+                                                type="submit"
+                                                fullWidth
+                                                mt="md"
+                                                variant="gradient"
+                                                gradient={{ from: 'var(--mantine-color-primary-5)', to: 'var(--mantine-color-secondary-5)' }}
+                                                leftSection={<IconUserCheck size={20} />}
+                                            >
+                                                Create Profile
+                                            </Button>
+                                        </Stack>
+                                    </Paper>
+                                </Grid.Col>
+        
+                                <Grid.Col span={{ base: 12, md: 6 }} order={{ base: 1, md: 2 }}>
+                                    <Stack h="100%" justify="center" align="flex-start" pl={{ md: "xl" }}>
+                                        <Title order={1} size="h2" fw={700} c="var(--mantine-color-primary-5).9">
+                                            Create Your Profile
+                                        </Title>
+                                        <Text size="lg" c="gray.7" maw={450} mb="md">
+                                            Please fill in your personal information to get started. This information helps us 
+                                            provide you with tailored services and support during this difficult time.
                                         </Text>
-                                        <TextInput
-                                            mb={5}
-                                            id="first-name-input"
-                                            error={formValidationErrors.firstName}
-                                            onChange={e => {
-                                                handleFormChange({firstName: e.target.value});
+                                        
+                                        <Paper shadow="md" radius="lg" p="lg" withBorder mb="md" w="100%">
+                                            <Stack>
+                                                <Title order={3} size="h5" fw={600}>Why We Need Your Information</Title>
+                                                <List spacing="xs" size="sm" center icon={
+                                                    <ThemeIcon color="var(--mantine-color-primary-5)" size={18} radius="xl">
+                                                        <IconCheck size={12} />
+                                                    </ThemeIcon>
+                                                }>
+                                                    <List.Item>Verify your identity for secure document handling</List.Item>
+                                                    <List.Item>Ensure proper delivery of services and notifications</List.Item>
+                                                    <List.Item>Provide personalized support throughout the process</List.Item>
+                                                    <List.Item>Maintain compliance with legal and regulatory requirements</List.Item>
+                                                </List>
+                                            </Stack>
+                                        </Paper>
+                                        
+                                        <Box
+                                            h={200}
+                                            w="100%"
+                                            style={{
+                                                borderRadius: 16,
+                                                overflow: 'hidden',
+                                                background: 'linear-gradient(135deg, var(--mantine-color-primary-4), var(--mantine-color-primary-6))',
+                                                opacity: 0.8,
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center'
                                             }}
-                                            onBlur={() => handleFormValidation({
-                                                firstName: userInfo.firstName
-                                            })}
-                                        />
-                                        <Text component="label" mb={-15} size="sm" htmlFor="middle-name-input">
-                                            Middle Name
-                                        </Text>
-                                        <TextInput
-                                            mb={5}
-                                            id="middle-name-input"
-                                            error={formValidationErrors.middleName}
-                                            onChange={e => {
-                                                handleFormChange({middleName: e.target.value});
-                                            }}
-                                            onBlur={() => handleFormValidation({
-                                                middleName: userInfo.middleName
-                                            })}
-                                        />
-                                        <Text component="label" mb={-15} size="sm" htmlFor="last-name-input">
-                                            Last Name
-                                        </Text>
-                                        <TextInput
-                                            mb={5}
-                                            id="last-name-input"
-                                            error={formValidationErrors.lastName}
-                                            onChange={e => {
-                                                handleFormChange({lastName: e.target.value});
-                                            }}
-                                            onBlur={() => handleFormValidation({
-                                                lastName: userInfo.lastName
-                                            })}
-                                        />
-                                        <Text component="label" mb={-15} size="sm" htmlFor="email-address-input">
-                                            Email Address
-                                        </Text>
-                                        <TextInput
-                                            mb={5}
-                                            id="email-address-input"
-                                            error={formValidationErrors.emailAddress}
-                                            onChange={e => {
-                                                handleFormChange({emailAddress: e.target.value});
-                                            }}
-                                            onBlur={() => handleFormValidation({
-                                                emailAddress: userInfo.emailAddress
-                                            })}
-                                        />
-                                        <Text component="label" mb={-15} size="sm" htmlFor="phone-number-input">
-                                            Phone Number
-                                        </Text>
-                                        <TextInput
-                                            mb={5}
-                                            id="phone-number-input"
-                                            error={formValidationErrors.phoneNumber}
-                                            onChange={e => {
-                                                handleFormChange({phoneNumber: e.target.value});
-                                            }}
-                                            onBlur={() => handleFormValidation({
-                                                phoneNumber: userInfo.phoneNumber
-                                            })}
-                                        />
-                                        <Text component="label" mb={-15} size="sm" htmlFor="zip-code-input">
-                                            Zip Code
-                                        </Text>
-                                        <TextInput
-                                            mb={5}
-                                            id="zip-code-input"
-                                            error={formValidationErrors.zipCode}
-                                            onChange={e => {
-                                                handleFormChange({zipCode: e.target.value});
-                                            }}
-                                            onBlur={() => handleFormValidation({
-                                                zipCode: userInfo.zipCode
-                                            })}
-                                        />
-                                    </Stack>
-                                </Card>
+                                        >
+                                            <Stack align="center" gap={0}>
+                                                <ThemeIcon size={64} radius={64} color="white" variant="light">
+                                                    <IconUserShield size={40} color="var(--mantine-color-primary-6)" />
+                                                </ThemeIcon>
+                                                <Text c="white" fw={600} mt="md">Your information is secure and protected</Text>
+                                            </Stack>
+                                        </Box>
                             </Stack>
                         </Grid.Col>
                     </Grid>
-                    <Button size="md" type="submit" bottom={50} right={{base: 20, md: 50}} style={{
-                        position: 'absolute'
-                    }}>
-                        Continue
-                    </Button>
                 </form>
-            </Stack>
+            </Container>
         </AuthenticatedPage>
+
     );
 }
 

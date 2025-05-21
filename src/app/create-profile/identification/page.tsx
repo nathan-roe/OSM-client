@@ -10,6 +10,7 @@ import FileUploadPage from "@/app/create-profile/FileUploadPage";
 import {useCreationProgress} from "@/context/UserCreationProgressContext";
 import {UserCreationProgress} from "@/query/deceasedUserManagement/useUserCreationProgress";
 import {usePageLoadIndicator} from "@/context/LoadingContext";
+import { IconFileDescription } from '@tabler/icons-react';
 
 
 interface UploadCertificateProps {
@@ -35,7 +36,9 @@ const UploadCertificate: React.FC<UploadCertificateProps> = () => {
     return (
         <FileUploadPage
             onSubmit={onSubmit}
-            title="Driver's license or government ID"
+            title="Government ID"
+            icon={IconFileDescription}
+            description="An official document that proves your identity, such as a driver's license, passport, or state ID card."
         />
    );
 }

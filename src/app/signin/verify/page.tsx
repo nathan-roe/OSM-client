@@ -1,11 +1,12 @@
 "use client";
 import React from 'react';
-import {Box, Button, Card, Divider, Group, PasswordInput, Stack, Text, Title} from "@mantine/core";
+import {Box, Button, Card, Divider, Group, Paper, PasswordInput, Stack, Text, Title} from "@mantine/core";
 import {validatePassword} from "@/common/validationUtils";
 import PublicPage from "@/app/components/PublicPage";
 import {useAuth} from "@/context/AuthContext";
 import Link from "next/link";
 import {useRouter} from "next/navigation";
+import CircuitBackground from '@/app/components/CircuitBackground';
 
 interface SignInAuthenticationCardProps {
 }
@@ -34,24 +35,75 @@ const SignInAuthentication: React.FC<SignInAuthenticationCardProps> = ({}) => {
     }, [password, emailAddress]);
 
     return (
-        <PublicPage showSignIn={false}>
-            <Stack h="100%" w="100vw" align="center" justify="center">
-                <Title visibleFrom="md">Welcome back</Title>
-                <Group maw="90vw" w={400} mt={25}>
-                    <Card w="100%" radius="md" withBorder px={50}>
-                        <Card.Section py={20} withBorder>
-                            <Stack align="center">
-                                <Text size="md">Choose how to sign in to</Text>
-                                <Text size="sm" fw="bold">{emailAddress}</Text>
-                                <Text size="sm">
-                                    <Box c="blue" variant="link" component={Link} href="/signin">
+        <PublicPage showSignIn={false} customBackground={<CircuitBackground />}>
+            <Stack h="100vh" justify="center" align="center" pt={{ base: 20, md: 0 }} pb={{ base: 40, md: 0 }}>
+                <Box 
+                    w={{ base: "90%", sm: 480 }}
+                    style={(theme) => ({
+                        position: 'relative',
+                        zIndex: 1
+                    })}
+                >
+                    <Title 
+                        order={1} 
+                        ta="center" 
+                        mb={30} 
+                        size="h2" 
+                        fw={700} 
+                        c="var(--mantine-color-primary-6)"
+                        style={{ 
+                            textShadow: '0 2px 10px rgba(0,0,0,0.05)'
+                        }}
+                    >
+                        Welcome Back
+                    </Title>
+                    
+                    <Paper 
+                        shadow="md" 
+                        radius="lg"
+                        p={0} 
+                        withBorder 
+                        style={(theme) => ({
+                            overflow: 'hidden',
+                            backdropFilter: 'blur(10px)',
+                            background: 'rgba(255,255,255,0.8)',
+                            borderColor: 'var(--mantine-color-gray-3)'
+                        })}
+                    >
+                        <Box 
+                            py={25} 
+                            px={30} 
+                            style={{ 
+                                borderBottom: '1px solid var(--mantine-color-gray-3)',
+                                background: 'linear-gradient(135deg, rgba(250,250,250,0.5), rgba(255,255,255,0.8))'
+                            }}
+                        >
+                            <Stack align="center" gap="xs">
+                                <Text size="md" fw={500} c="gray.8">Choose how to sign in to</Text>
+                                <Text size="lg" fw={700} c="var(--mantine-color-primary-7)">{emailAddress}</Text>
+                                <Text size="sm" mt={5}>
+                                    <Box 
+                                        c="var(--mantine-color-primary-5)" 
+                                        variant="link" 
+                                        component={Link} 
+                                        href="/signin"
+                                        style={{
+                                            textDecoration: 'none',
+                                            fontWeight: 500,
+                                            transition: 'color 0.2s ease',
+                                            '&:hover': {
+                                                color: 'var(--mantine-color-primary-7)'
+                                            }
+                                        }}
+                                    >
                                         Use a different account
                                     </Box>
                                 </Text>
                             </Stack>
-                        </Card.Section>
-                        <Card.Section pt={20} pb={40} withBorder>
-                            <Stack align="center">
+                        </Box>
+                        
+                        <Box px={30} py={35}>
+                            <Stack align="center" gap="lg">
                                 <form style={{
                                     width: '100%'
                                 }} onSubmit={e => {
@@ -81,14 +133,14 @@ const SignInAuthentication: React.FC<SignInAuthenticationCardProps> = ({}) => {
                                 <Divider w="100%" label="OR" labelPosition="center" my="md"/>
                                 <Button w="100%" variant="outline">Text a code to (***) ***-**00</Button>
                                 <Text size="sm">
-                                    <Box c="blue" variant="link" component={Link} href="/reset-password">
+                                    <Box c="var(--mantine-color-primary-5)" variant="link" component={Link} href="/reset-password">
                                         Forgot password?
                                     </Box>
                                 </Text>
                             </Stack>
-                        </Card.Section>
-                    </Card>
-                </Group>
+                        </Box>
+                    </Paper>
+                </Box>
             </Stack>
         </PublicPage>
     );

@@ -2,10 +2,23 @@
 import '@mantine/dropzone/styles.css';
 import React from 'react';
 import AuthenticatedPage from "@/app/dashboard/AuthenticatedPage";
-import {Affix, Autocomplete, Box, Button, Card, Chip, Group, Image, Text} from '@mantine/core';
+import {
+    Affix,
+    Autocomplete,
+    Box,
+    Button,
+    Card,
+    SimpleGrid,
+    Container,
+    Stack,
+    Title,
+    Image,
+    Text,
+    Badge
+} from '@mantine/core';
 import {useRouter} from "next/navigation";
 import {SupportedService, useAvailableServices} from "@/query/dataRemoval/useAvailableServices";
-import {IconSearch} from '@tabler/icons-react';
+import {IconArrowRight, IconCheck, IconSearch} from '@tabler/icons-react';
 import {useAddServicesToDeceasedUser} from "@/query/deceasedUserManagement/useAddServicesToDeceasedUser";
 import {useCreationProgress} from "@/context/UserCreationProgressContext";
 import {UserCreationProgress} from "@/query/deceasedUserManagement/useUserCreationProgress";
@@ -59,59 +72,134 @@ const Services: React.FC<ServicesProps> = () => {
 
     return (
         <AuthenticatedPage>
-            <Autocomplete
-                placeholder="Find services"
-                data={(availableServices || []).map(s => s.service)}
-                value={search}
-                onChange={setSearch}
-                w='50vw'
-                miw={200}
-                leftSection={<IconSearch style={{height: 20}} stroke={1.5} />}
-            />
-            <Group justify="center">
-                {servicesInSearch.map(availableService => {
-                    const selected = selectedServices.includes(availableService.service);
-                    return (
-                        <Card
-                            key={availableService.service}
-                            shadow="lg"
-                            padding="md"
-                            radius="md"
-                            withBorder
-                            w={300}
-                            h={300}
-                            style={{cursor: 'pointer'}}
-                            onClick={() => handleSelection(availableService)}
-                        >
-                            {selected ? (
-                                <Chip defaultChecked style={{
-                                    position: 'absolute',
-                                    top: 5,
-                                    right: 5
-                                }}>Selected</Chip>
-                            ) : <Box />}
-                            <Card.Section>
-                                <Group justify="center" p={20}>
-                                    <Image
-                                        src={`data:image/png;base64,${availableService.resource}`}
-                                        w="auto"
-                                        h={150}
-                                        alt={`${availableService.service} Logo`}
-                                    />
-                                </Group>
-                            </Card.Section>
-                            <Group justify="center">
-                                <Text>{availableService.service}</Text>
-                            </Group>
-                        </Card>
-                    );
-                })}
-            </Group>
-            <Affix bottom={50} right={{base: 20, md: 50}}>
-                <Button size="md" onClick={handleSubmit} disabled={!selectedServices.length}>
-                    Continue
-                </Button>
-            </Affix>
+            <Stack px="md" py="xl">
+                <Container size="xl">
+                    <Stack align="center">
+                        <Title order={1} ta="center" size="h2" fw={700} c="var(--mantine-color-primary-5).9">
+                            Select Your Services
+                        </Title>
+
+                        <Autocomplete
+                            placeholder="Search for services..."
+                            data={(availableServices || []).map(s => s.service)}
+                            value={search}
+                            onChange={setSearch}
+                            size="lg"
+                            radius="xl"
+                            w={{ base: '95%', sm: '70%', md: '50%' }}
+                            leftSection={<IconSearch size={20} style={{ color: 'var(--mantine-color-primary-6)' }} />}
+                            styles={{
+                                input: {
+                                    '&:focus': {
+                                        borderColor: 'var(--mantine-color-primary-5)',
+                                        boxShadow: '0 0 0 3px var(--mantine-color-primary-1)',
+                                    },
+                                },
+                            }}
+                        />
+                    </Stack>
+                </Container>
+
+                <Container size="xl" py="xl">
+                    <SimpleGrid
+                        cols={{ base: 1, sm: 2, md: 3, lg: 4 }}
+                        verticalSpacing="xl"
+                    >
+                        {servicesInSearch.map(availableService => {
+                            const selected = selectedServices.includes(availableService.service);
+                            return (
+                                <Card
+                                    key={availableService.service}
+                                    shadow="sm"
+                                    padding="lg"
+                                    radius="lg"
+                                    withBorder
+                                    style={{
+                                        cursor: 'pointer',
+                                        transform: selected ? 'scale(1.02)' : 'scale(1)',
+                                        transition: 'all 0.2s ease',
+                                        border: selected ? '2px solid var(--mantine-color-primary-5)' : undefined,
+                                    }}
+                                    onClick={() => handleSelection(availableService)}
+                                >
+                                    {selected && (
+                                        <Box
+                                            style={{
+                                                position: 'absolute',
+                                                top: 12,
+                                                right: 12,
+                                                zIndex: 2,
+                                            }}
+                                        >
+                                            <Badge
+                                                radius="xl"
+                                                variant="gradient"
+                                                gradient={{ from: 'var(--mantine-color-primary-5)', to: 'var(--mantine-color-secondary-5)' }}
+                                                leftSection={<IconCheck size={14} />}
+                                            >
+                                                Selected
+                                            </Badge>
+                                        </Box>
+                                    )}
+
+                                    <Card.Section>
+                                        <Box
+                                            p="xl"
+                                            style={{
+                                                background: 'linear-gradient(to bottom, var(--mantine-color-gray-0), var(--mantine-color-gray-1))',
+                                                display: 'flex',
+                                                justifyContent: 'center',
+                                                alignItems: 'center',
+                                                height: 200,
+                                            }}
+                                        >
+                                            <Image
+                                                src={`data:image/png;base64,${availableService.resource}`}
+                                                w="auto"
+                                                h={150}
+                                                alt={`${availableService.service} Logo`}
+                                                style={{
+                                                    filter: selected ? 'none' : 'grayscale(0.2)',
+                                                    transition: 'filter 0.2s ease',
+                                                }}
+                                            />
+                                        </Box>
+                                    </Card.Section>
+
+                                    <Stack mt="md">
+                                        <Text
+                                            fw={500}
+                                            size="lg"
+                                            ta="center"
+                                            c={selected ? 'var(--mantine-color-primary-5).9' : 'dark'}
+                                        >
+                                            {availableService.service}
+                                        </Text>
+                                        <Text c="dimmed" size="sm" ta="center">
+                                            Click to {selected ? 'deselect' : 'select'} this service
+                                        </Text>
+                                    </Stack>
+                                </Card>
+                            );
+                        })}
+                    </SimpleGrid>
+                </Container>
+
+                <Affix position={{ bottom: 75, right: 20 }}>
+                    <Button
+                        size="lg"
+                        radius="xl"
+                        disabled={!selectedServices.length}
+                        onClick={handleSubmit}
+                        variant="gradient"
+                        gradient={{ from: 'var(--mantine-color-primary-5)', to: 'var(--mantine-color-secondary-5)' }}
+                        leftSection={<IconArrowRight size={20} />}
+                        px={30}
+                    >
+                        Continue with {selectedServices.length} {selectedServices.length === 1 ? 'service' : 'services'}
+                    </Button>
+                </Affix>
+            </Stack>
         </AuthenticatedPage>
     );
 }
