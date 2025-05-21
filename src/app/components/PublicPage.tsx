@@ -1,16 +1,23 @@
 "use client";
-import {AppShell, Stack} from "@mantine/core";
+import {AppShell, Box, Stack} from "@mantine/core";
 import Footer from "@/app/components/Footer";
 import React from "react";
 import PublicHeader from "./PublicHeader";
+import SupportChat from "@/app/components/SupportChat";
 
 interface PublicPageProps {
     showSignIn?: boolean;
     customActions?: React.ReactNode | React.ReactNode[];
     children?: React.ReactNode | React.ReactNode[];
+    customBackground?: React.ReactNode;
 }
 
-const PublicPage: React.FC<PublicPageProps> = ({showSignIn = true, customActions, children}) => {
+const PublicPage: React.FC<PublicPageProps> = ({
+    showSignIn = true, 
+    customActions, 
+    children, 
+    customBackground
+}) => {
 
     return (
         <AppShell
@@ -31,8 +38,12 @@ const PublicPage: React.FC<PublicPageProps> = ({showSignIn = true, customActions
             </AppShell.Header>
             <AppShell.Main>
                 <Stack mih="fit-content" h="calc(100vh - 51px)" align="center" justify="space-between" gap={0}>
-                    {children}
-                    <Footer />
+                    {customBackground || ""}
+                    <Box style={{zIndex: 1}}>
+                        {children}
+                        <SupportChat />
+                        <Footer />
+                    </Box>
                 </Stack>
             </AppShell.Main>
         </AppShell>

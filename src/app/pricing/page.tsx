@@ -12,7 +12,7 @@ import {
     ThemeIcon,
     Badge,
     rem,
-    Button
+    Button, Box
 } from '@mantine/core';
 import {
     IconCheck,
@@ -23,6 +23,9 @@ import {
     IconExternalLink
 } from '@tabler/icons-react';
 import PublicPage from "@/app/components/PublicPage";
+import GeometricBackground from '../components/GeometricBackground';
+import CircuitBackground from "@/app/components/CircuitBackground";
+import GradientMeshBackground from "@/app/components/GradientMeshBackground";
 
 interface PricingFeature {
     text: string;
@@ -94,7 +97,7 @@ export default function PublicPricingPage() {
     ];
 
     return (
-        <PublicPage>
+        <PublicPage customBackground={<GradientMeshBackground />}>
             <Container size="xl" py="xl">
                 <Stack gap="xl">
                     <Stack gap="xs" ta="center">

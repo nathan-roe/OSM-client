@@ -47,6 +47,7 @@ import {useMediaQuery} from "@mantine/hooks";
 import Wave from "./components/Wave";
 import React from "react";
 import {useRouter} from "next/navigation";
+import BackgroundDots from "@/app/components/BackgroundDots";
 
 
 const secondaryInfoCards = [
@@ -70,7 +71,7 @@ const secondaryInfoCards = [
 const LandingPage = () => {
     const mobile = useMediaQuery('(max-width: 62em)')
     return (
-        <PublicPage>
+        <PublicPage customBackground={<BackgroundDots blur />}>
             {mobile ? <LandingMobile/> : <LandingDesktop/>}
         </PublicPage>
     );

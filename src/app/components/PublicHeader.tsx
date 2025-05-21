@@ -112,7 +112,7 @@ const PublicHeader: React.FC<PublicHeaderProps> = ({showSignIn, customActions}) 
                             <Menu
                                 position="bottom-end"
                                 shadow="md"
-                                width={200}
+                                width={125}
                                 radius="md"
                             >
                                 <Menu.Target>
@@ -130,16 +130,6 @@ const PublicHeader: React.FC<PublicHeaderProps> = ({showSignIn, customActions}) 
                                     {SupportedLanguages.map(language => (
                                         <Menu.Item
                                             key={language}
-                                            leftSection={
-                                                <ThemeIcon
-                                                    color="var(--mantine-color-primary-5)"
-                                                    variant="light"
-                                                    size={32}
-                                                    radius="xl"
-                                                >
-                                                    <IconLanguage size={16} />
-                                                </ThemeIcon>
-                                            }
                                         >
                                             {language}
                                         </Menu.Item>

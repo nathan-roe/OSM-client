@@ -1,4 +1,5 @@
 "use client";
+import CircuitBackground from "../components/CircuitBackground";
 import PublicPage from "../components/PublicPage";
 import SignInCard from "./SignInCard";
 import {Box, Container, Grid, Text, Paper, Stack, ThemeIcon, Title} from "@mantine/core";
@@ -6,7 +7,7 @@ import {IconShieldLock} from "@tabler/icons-react";
 
 const SignInPage = () => {
     return (
-        <PublicPage showSignIn={false}>
+        <PublicPage showSignIn={false} customBackground={<CircuitBackground />}>
             <Container size="lg" h="100%">
                 <Grid gutter={0} align="center">
                     <Grid.Col span={{ base: 12, md: 6 }} order={{ base: 2, md: 1 }}>
