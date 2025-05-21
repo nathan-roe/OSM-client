@@ -8,10 +8,11 @@ import AuthenticatedNavBar from "@/app/dashboard/AuthenticatedNavBar";
 import {UserCreationProgressProvider} from "@/context/UserCreationProgressContext";
 import {PageLoadIndicatorProvider, PageOverlay, usePageLoadIndicator} from "@/context/LoadingContext";
 import Footer from "@/app/components/Footer";
-import {Background} from "@/app/components/Background";
+import BackgroundDots from "@/app/components/BackgroundDots";
 
 interface AuthenticatedPageProps {
     children?: React.ReactNode | React.ReactNode[];
+    customBackground?: React.ReactNode;
 }
 
 const AuthenticatedPage: React.FC<AuthenticatedPageProps> = (props) => {
@@ -33,7 +34,7 @@ const AuthenticatedPage: React.FC<AuthenticatedPageProps> = (props) => {
     );
 }
 
-const AuthenticatedShell: React.FC<AuthenticatedPageProps> = ({children}) => {
+const AuthenticatedShell: React.FC<AuthenticatedPageProps> = ({customBackground, children}) => {
     const {user} = useAuth();
     const {overlay} = usePageLoadIndicator();
 
@@ -68,6 +69,7 @@ const AuthenticatedShell: React.FC<AuthenticatedPageProps> = ({children}) => {
                 {user === UserAuthenticationState.INITIALIZING
                     ? <PageOverlay /> : (
                     <Stack h="calc(100vh - 115px)" w="100vw" pos="relative" align="center" justify="space-between">
+                        {customBackground || <BackgroundDots blur opacity={.15} />}
                         {overlay}
                         {children}
                     </Stack>
